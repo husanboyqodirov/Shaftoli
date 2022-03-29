@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--Recruiter menus-->
+    <item
+        android:id="@+id/navRecJobPosts"
+        android:icon="@drawable/ic_jobs"
+        android:title="Posted Jobs" />
+    <item
+        android:id="@+id/navRecApplicants"
+        android:icon="@drawable/ic_jobpost"
+        android:title="New Vacancy" />
+
+    <item
+        android:id="@+id/navRecMessages"
+        android:icon="@drawable/ic_message"
+        android:title="Messages" />
+
+    <item
+        android:id="@+id/navRecNotification"
+        android:icon="@drawable/ic_notification"
+        android:title="Notifications" />
+
+    <item
+        android:id="@+id/navRecProfile"
+        android:icon="@drawable/ic_profile"
+        android:title="Profile" />
+
+</menu>

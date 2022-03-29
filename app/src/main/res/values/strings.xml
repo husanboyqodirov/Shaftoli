@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Shaftoli</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eros ipsum, egestas vitae porta sit amet, aliquam ut metus. Aenean ac magna sit amet arcu tincidunt egestas ut quis leo. Sed congue finibus orci, non convallis sapien consectetur at. Mauris varius turpis a augue semper rutrum. Duis pulvinar nulla quis est fermentum accumsan. Phasellus molestie eros id sapien congue scelerisque. Vivamus maximus felis nec urna iaculis, quis blandit massa suscipit.</string>
+    <string name="welcomeSlide1">It is easy. Search jobs based on your skills, qualifications and experience.</string>
+    <string name="welcomeSlide2">Find jobs in your city, near your town or close to your neighborhood.</string>
+    <string name="welcomeSlide3">Do you need to hire employee? Post your available vacancies on our board and find a matching applicant.</string>
+    <string name="welcomeSlide4">Connect with people, check out their resumes and hire them in your company and grow your business.</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="title_activity_recruiter">RecruiterActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_job_hunter">JobHunterActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_layout_policy">By countinuing, you are indicating that you accept our <u>Terms of Service</u> and <u>Privacy Policy</u>.</string>
+    <string name="job_title">Implementation and Maintenance Specialist (Banking Software)</string>
+    <string name="company_name">Banks Soft Systems, Ltd.</string>
+    <string name="location">Tashkent</string>
+    <string name="salary">4000 ~ 4500</string>
+    <string name="job_time">9AM ~ 6PM</string>
+</resources>
