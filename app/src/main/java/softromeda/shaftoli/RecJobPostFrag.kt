@@ -43,8 +43,11 @@ class RecJobPostFrag : Fragment() {
                                     document.data["state"] as String + ", " +
                                     document.data["country"] as String,
                             document.data["salary"] as String,
-                            document.data["timeFrom"] as String + " ~ " + document.data["timeFrom"] as String,
-                            document.data["category"] as String
+                            document.data["timeFrom"] as String + " ~ " + document.data["timeUntil"] as String,
+                            document.data["education"] as String,
+                            document.data["category"] as String,
+                            "Deadline:  " + document.data["deadline"] as String,
+                            ""
                         )
                     )
                 }

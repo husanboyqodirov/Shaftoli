@@ -27,8 +27,8 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val user = Firebase.auth.currentUser
         if (user != null) {
-            val sharedPreferences = getSharedPreferences("UserType", Activity.MODE_PRIVATE)
-            if (sharedPreferences.getString("Type", "") == "job_hunter")
+            val sharedPreferences = getSharedPreferences("shaftoli", Activity.MODE_PRIVATE)
+            if (sharedPreferences.getString("userType", "") == "job_hunter")
                 startActivity(Intent(this, JobHunterActivity::class.java))
             else
                 startActivity(Intent(this, RecruiterActivity::class.java))
@@ -90,12 +90,12 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun isFirstTimeAppStart(): Boolean {
-        val pref = applicationContext.getSharedPreferences("shaftoli_welcome", Context.MODE_PRIVATE)
+        val pref = applicationContext.getSharedPreferences("shaftoli", Context.MODE_PRIVATE)
         return pref.getBoolean("APP_START", true)
     }
 
     private fun setAppStartStatus(status: Boolean) {
-        val pref = applicationContext.getSharedPreferences("shaftoli_welcome", Context.MODE_PRIVATE)
+        val pref = applicationContext.getSharedPreferences("shaftoli", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = pref.edit()
         editor.putBoolean("APP_START", status)
         editor.apply()

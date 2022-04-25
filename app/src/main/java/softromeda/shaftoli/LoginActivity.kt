@@ -3,6 +3,7 @@ package softromeda.shaftoli
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.MotionEvent
@@ -26,7 +27,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -51,28 +51,36 @@ class LoginActivity : AppCompatActivity() {
         val password: String = etLoginPass.text.toString()
         if (TextUtils.isEmpty(email)) {
             progressBar.visibility = View.GONE
-            etLoginEmail.error = "Email cannot be empty"
+            etLoginEmail.error = "Email cannot be empty."
             etLoginEmail.requestFocus()
         } else if (TextUtils.isEmpty(password)) {
             progressBar.visibility = View.GONE
-            etLoginPass.error = "Password cannot be empty"
+            etLoginPass.error = "Password cannot be empty."
             etLoginPass.requestFocus()
         } else {
             mAuth!!.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val token = Firebase.auth.currentUser?.uid
-                    val db = Firebase.firestore
-                    val userType = getSharedPreferences("UserType", Context.MODE_PRIVATE).edit()
-                    val docRef = token?.let { Firebase.firestore.collection("job_hunters").document(it) }
-                    docRef?.get()?.addOnSuccessListener {
-                        startActivity(Intent(this, JobHunterActivity::class.java))
-                        userType.putString("Type", "job_hunter")
-                    }?.addOnFailureListener {
-                        startActivity(Intent(this, RecruiterActivity::class.java))
-                        userType.putString("Type", "recruiter")
-                    }
-                    userType.apply()
-//                    Toast.makeText(this, "User logged in successfully", Toast.LENGTH_LONG).show()
+                    var token = Firebase.auth.currentUser?.uid
+                    token = token.toString()
+                    val userType = getSharedPreferences("shaftoli", Context.MODE_PRIVATE).edit()
+                    Firebase.firestore.collection("job_hunters")
+                    .get()
+                        .addOnSuccessListener { result ->
+                            for (document in result) {
+                                if(document.data["token"] == token) {
+                                    startActivity(Intent(this, JobHunterActivity::class.java))
+                                    userType.putString("userType", "job_hunter")
+                                    userType.putString("myField", document.data["field"] as String)
+                                    userType.apply()
+                                    finish()
+                                    return@addOnSuccessListener
+                                }
+                            }
+                            startActivity(Intent(this, RecruiterActivity::class.java))
+                            userType.putString("userType", "recruiter")
+                            userType.apply()
+                            finish()
+                        }
                     prBarLogin.visibility = View.GONE
                 } else {
                     Toast.makeText(this, "Please check your email and password.", Toast.LENGTH_LONG).show()

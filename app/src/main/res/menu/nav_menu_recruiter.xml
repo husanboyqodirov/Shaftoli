@@ -7,14 +7,9 @@
         android:icon="@drawable/ic_jobs"
         android:title="Posted Jobs" />
     <item
-        android:id="@+id/navRecApplicants"
+        android:id="@+id/navRecVacancy"
         android:icon="@drawable/ic_jobpost"
         android:title="New Vacancy" />
-
-    <item
-        android:id="@+id/navRecMessages"
-        android:icon="@drawable/ic_message"
-        android:title="Messages" />
 
     <item
         android:id="@+id/navRecNotification"

@@ -184,6 +184,28 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Level of Degree:"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/txtJobEducation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/jobViewLLayouts">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Phone:"
                 android:textSize="15sp"
                 android:layout_marginEnd="10dp"
@@ -251,6 +273,17 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:text="Apply for this vacancy" />
+        android:backgroundTint="@color/blueWelcome"
+        android:drawableTint="@color/white"
+        android:drawableLeft="@drawable/ic_send"
+        android:text="Apply for this vacancy"
+        android:textColor="@color/white"
+        app:cornerRadius="20dp" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/contextV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

@@ -18,16 +18,14 @@ class RecruiterActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED;
 
         val recJobPostFrag = RecJobPostFrag()
-        val recApplicantsFrag = RecApplicantsFrag()
-        val recMessagesFrag = RecMessagesFrag()
+        val recVacancyFrag = RecVacancyFrag()
         val recNotificationsFrag = RecNotificationsFrag()
         val recProfileFrag = RecProfileFrag()
 
         bottom_nav_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navRecJobPosts -> setCurrentFragment(recJobPostFrag)
-                R.id.navRecApplicants -> setCurrentFragment(recApplicantsFrag)
-                R.id.navRecMessages -> setCurrentFragment(recMessagesFrag)
+                R.id.navRecVacancy -> setCurrentFragment(recVacancyFrag)
                 R.id.navRecNotification -> setCurrentFragment(recNotificationsFrag)
                 R.id.navRecProfile -> setCurrentFragment(recProfileFrag)
             }

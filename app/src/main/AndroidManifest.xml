@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Shaftoli">
         <activity
-            android:name=".ApplyActivity"
-            android:exported="false" />
-        <activity
             android:name=".JobViewActivity"
             android:exported="false" />
         <activity
@@ -32,6 +29,10 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".JobHunterActivity" />
         <activity android:name=".RecruiterActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

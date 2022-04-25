@@ -109,7 +109,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Salary"
-                    android:inputType="text" />
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtLevel"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/txtDegreeLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Level of Degree"
+                    android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -177,7 +192,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:startIconDrawable="@drawable/ic_description"
                 android:layout_marginBottom="10dp">
 
@@ -204,28 +219,57 @@
                     android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:id="@+id/btnDeadline"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:layout_marginEnd="5dp"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:text="Deadline" />
+
             <Button
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/btnChooseCategory"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginBottom="10dp"
-                android:text="Choose Category" />
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:layout_marginStart="5dp"
+                android:drawableLeft="@drawable/ic_category"
+                android:text="Category" />
+
+        </LinearLayout>
 
             <Button
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/btnAnnounce"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginBottom="80dp"
+                android:layout_height="65dp"
+                android:layout_marginBottom="70dp"
+                app:cornerRadius="20dp"
+                android:textColor="@color/white"
+                android:drawableTint="@color/white"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:backgroundTint="#9966ff"
                 android:drawableLeft="@drawable/ic_publish"
                 android:text="Create Announcement" />
         </LinearLayout>
+
     </ScrollView>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/snackViewPost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/snackViewPost"/>
+        android:layout_marginBottom="40dp" />
 </RelativeLayout>

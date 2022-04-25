@@ -1,0 +1,37 @@
+Obstetrician
+Anesthesiologist
+Dental Assistant
+Doctor
+Cardiologist
+Doctor laboratory assistant
+General Practitioner
+Ultrasound doctor
+Gynecologist
+Child psychologist
+Pharmacy Manager
+Exercise therapy instructor
+Cardiologist
+Laboratory assistant
+Speech therapist
+Nurse
+Medical representative
+Medical Registrar
+Physiotherapy Nurse
+Microbiologist
+Narcologist
+Neurologist
+Ophthalmologis
+Pediatrician
+Pharmacist
+Psychotherapist
+Radiologist
+Sanitary doctor
+Sports doctor
+Dentist
+Therapist
+Urologist
+Paramedic
+Paramedic laboratory assistant
+Surgeon
+Endocrinologist
+Epidemiologist

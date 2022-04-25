@@ -19,4 +19,6 @@
     <string name="location">Tashkent</string>
     <string name="salary">4000 ~ 4500</string>
     <string name="job_time">9AM ~ 6PM</string>
+    <string name="notice_txt">By using our service, you agree to acknowledge our <u>Terms of Use</u> and <u>Privacy Policy.</u></string>
+    <string name="apply_confirm">Once you apply for this job, recruiter can see your info such as: address, education, speciality, skills, work history and self introduction. Do you agree?</string>
 </resources>

@@ -59,6 +59,10 @@ class CategoryActivity : AppCompatActivity() {
                         4 ->  this.resources.openRawResource(R.raw.human_resources)
                         5 ->  this.resources.openRawResource(R.raw.culture_arts)
                         6 ->  this.resources.openRawResource(R.raw.logistics_customs)
+                        7 ->  this.resources.openRawResource(R.raw.marketing_advertising)
+                        8 ->  this.resources.openRawResource(R.raw.medicine_pharmaceuticals)
+
+
                         else -> {
                             this.resources.openRawResource(R.raw.jurisprudence_notary)
                         }
@@ -73,6 +77,8 @@ class CategoryActivity : AppCompatActivity() {
                         line = br.readLine()
                     }
                     br.close()
+                    catGIF.visibility = View.GONE
+                    lyChipGroup.visibility = View.VISIBLE
                 } catch (e: Exception) {
                 }
             }
@@ -85,13 +91,14 @@ class CategoryActivity : AppCompatActivity() {
                     list[i]
             }
             val userType = getSharedPreferences(
-                "category",
+                "shaftoli",
                 Context.MODE_PRIVATE
             ).edit()
-            userType.putString("choosenCats", checked)
+            userType.putString("chosenCats", checked)
+            userType.putString("myField", txtChosenCategory.text.toString())
             userType.apply()
             finish()
-            Toast.makeText(this, "Categories chosen.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Category's chosen.", Toast.LENGTH_SHORT).show()
         }
     }
 

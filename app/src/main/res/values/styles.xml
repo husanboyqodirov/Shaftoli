@@ -53,4 +53,16 @@
 
     </style>
 
+    <style name="TextProfileInfo">
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="fontFamily">@font/baumans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.WhiteAccent">
+        <item name="colorAccent">@color/white</item> <!-- Whatever color you want-->
+    </style>
+
 </resources>

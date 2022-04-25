@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <ScrollView
         android:id="@+id/loginLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="24dp"
             tools:context=".LoginActivity">
 
             <ImageView
@@ -31,21 +33,23 @@
                 android:layout_gravity="center"
                 android:orientation="vertical">
 
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="16dp"
+                    android:fontFamily="@font/gafata"
                     android:gravity="center_horizontal"
-                    android:text="Login"
-                    android:textColor="@color/teal_700"
-                    android:textSize="30sp"
+                    android:text="Shaftoli"
+                    android:textColor="@color/blueWelcome"
+                    android:textSize="28sp"
                     android:textStyle="bold" />
-
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:startIconDrawable="@drawable/ic_email">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etLoginEmail"
@@ -60,7 +64,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginTop="12dp"
+                    app:startIconDrawable="@drawable/ic_key">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etLoginPass"
@@ -75,22 +80,24 @@
                     style="@android:style/Widget.DeviceDefault.ProgressBar.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_below="@id/loginLayout"
                     android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
                     android:visibility="gone" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:backgroundTint="#0066ff"
+                    app:cornerRadius="20dp"
                     android:layout_marginTop="24dp"
                     android:text="Login" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -113,8 +120,11 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
     </ScrollView>
 
-
-</RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="90dp"
+        android:src="@drawable/login_back" />
+</LinearLayout>
