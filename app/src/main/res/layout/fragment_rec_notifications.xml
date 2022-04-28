@@ -2,11 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginVertical="5dp"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/emptyLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Notifications" />
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone">
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/catGIF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nothing_here" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/atma_light"
+            android:text="No applicants for any job yet!"
+            android:textAlignment="center"
+            android:textColor="#cc00ff"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/recListView"
+        android:layout_width="match_parent"
+        android:dividerHeight="3dp"
+        android:layout_height="match_parent"/>
 </LinearLayout>

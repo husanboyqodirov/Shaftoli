@@ -16,8 +16,8 @@
 
     <item
         android:id="@+id/navHunterNotification"
-        android:icon="@drawable/ic_notification"
-        android:title="Notifications" />
+        android:icon="@drawable/ic_send"
+        android:title="Applications" />
 
     <item
         android:id="@+id/navHunterProfile"

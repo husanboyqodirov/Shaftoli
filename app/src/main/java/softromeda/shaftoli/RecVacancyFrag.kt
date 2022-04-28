@@ -21,6 +21,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_rec_profile.*
 import kotlinx.android.synthetic.main.fragment_rec_vacancy.*
 import kotlinx.android.synthetic.main.fragment_rec_vacancy.view.*
 import java.security.Timestamp
@@ -64,6 +65,8 @@ class RecVacancyFrag : Fragment() {
         view.btnChooseCategory.setOnClickListener {
             startActivity(Intent(context, CategoryActivity::class.java))
         }
+
+        getProfileInfo()
 
         view.txtTimeFrom.setOnClickListener {
             val picker =
@@ -143,6 +146,7 @@ class RecVacancyFrag : Fragment() {
                         if (sharedPreferences != null) {
                             if (sharedPreferences.getString("chosenCats", "") != "") {
                                 val txtCategory = sharedPreferences.getString("chosenCats", "")
+                                val txtField = sharedPreferences.getString("jobField", "")
 
                                 val db = Firebase.firestore
 
@@ -151,6 +155,8 @@ class RecVacancyFrag : Fragment() {
                                         "title" to txtVacancyName,
                                         "recruiter" to txtRecruiter,
                                         "address" to txtAddress,
+                                        "applicants" to "",
+                                        "field" to txtField,
                                         "state" to txtState,
                                         "country" to txtCountry,
                                         "salary" to txtSalary,
@@ -200,6 +206,19 @@ class RecVacancyFrag : Fragment() {
             }
         }
         return view
+    }
+
+    private fun getProfileInfo() {
+        val docRef = Firebase.auth.currentUser?.let { it1 ->
+            Firebase.firestore.collection("recruiters").document(
+                it1.uid
+            )
+        }
+        docRef?.get()?.addOnSuccessListener { document ->
+            txtRecruiter.setText(document.data?.get("name") as String)
+            txtEmail.setText(document.data?.get("email") as String)
+            txtPhone.setText(document.data?.get("phone") as String)
+        }
     }
 
     private fun View.hideKeyboard() {

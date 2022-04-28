@@ -29,6 +29,7 @@ class JobViewActivity : AppCompatActivity() {
         var applicants= ""
         var rec_token = ""
         var exp_years = ""
+        var appGender = ""
 
         val docRef = jobID?.let { db.collection("vacancies").document(it) }
         docRef?.get()?.addOnSuccessListener { document ->
@@ -82,7 +83,8 @@ class JobViewActivity : AppCompatActivity() {
             }
             docRef2?.get()?.addOnSuccessListener {
                 dialogView.editName.setText(it.data?.get("name") as String)
-                if (it.data?.get("gender") as String == "Male")
+                appGender = it.data?.get("gender") as String
+                if (appGender == "Male")
                     dialogView.radio_button_1.isChecked = true
                 else
                     dialogView.radio_button_2.isChecked = true
@@ -128,8 +130,12 @@ class JobViewActivity : AppCompatActivity() {
                                                     hashMapOf(
                                                         "job_id" to jobID,
                                                         "recruiter" to rec_token,
-                                                        "applicant" to it1.uid,
-                                                        "experience" to exp_years,
+                                                        "rec_name" to txtJobRecruiter.text.toString(),
+                                                        "applicant_token" to it1.uid,
+                                                        "applicant_name" to dialogView.editName.text.toString(),
+                                                        "gender" to appGender,
+                                                        "job_title" to txtJobTitle.text.toString(),
+                                                        "status" to "Waiting...",
                                                         "date" to FieldValue.serverTimestamp()
                                                     )
                                                 )

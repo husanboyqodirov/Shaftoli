@@ -95,7 +95,7 @@ class CategoryActivity : AppCompatActivity() {
                 Context.MODE_PRIVATE
             ).edit()
             userType.putString("chosenCats", checked)
-            userType.putString("myField", txtChosenCategory.text.toString())
+            userType.putString("jobField", txtChosenCategory.text.toString())
             userType.apply()
             finish()
             Toast.makeText(this, "Category's chosen.", Toast.LENGTH_SHORT).show()

@@ -33,6 +33,7 @@
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/drawable/ic_sort.xml" value="0.1305" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/drawable/ic_time.xml" value="0.1495" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/drawable/list_back.xml" value="0.21614583333333334" />
+        <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/activity_applicant_view.xml" value="0.22631578947368422" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/activity_apply.xml" value="0.1962962962962963" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/activity_bottom_nav.xml" value="0.26875" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/activity_category.xml" value="0.26875" />
@@ -43,13 +44,14 @@
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/activity_view_pager.xml" value="0.2" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/activity_view_pager2.xml" value="0.2" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/activity_welcome.xml" value="0.2" />
+        <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/applicant_view.xml" value="0.22631578947368422" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/choose_user_type.xml" value="0.2" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/custom_main_view.xml" value="0.26875" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/custom_view.xml" value="0.19907407407407407" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_dashboard.xml" value="0.26875" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_home.xml" value="0.26875" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_hunter_favorites.xml" value="0.26875" />
-        <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_hunter_favs.xml" value="0.26875" />
+        <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_hunter_favs.xml" value="0.22" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_hunter_jobs.xml" value="0.19907407407407407" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_hunter_messages.xml" value="0.26875" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_hunter_notifications.xml" value="0.26875" />
@@ -57,11 +59,12 @@
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_hunter_search.xml" value="0.18703703703703703" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_notifications.xml" value="0.26875" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_rec_applicants.xml" value="0.2" />
-        <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_rec_job_post.xml" value="0.2574074074074074" />
+        <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_rec_job_post.xml" value="0.16623376623376623" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_rec_messages.xml" value="0.2" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_rec_notifications.xml" value="0.2" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_rec_profile.xml" value="0.25" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/fragment_rec_vacancy.xml" value="0.25" />
+        <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/hunter_notify_row.xml" value="0.22060709705002138" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/hunter_profile_edit.xml" value="0.26875" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/item_post_fav.xml" value="0.20555555555555555" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/item_posts.xml" value="0.26875" />
@@ -69,6 +72,7 @@
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/login.xml" value="0.26875" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/material_page.xml" value="0.2" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/popup_menu.xml" value="0.26875" />
+        <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/rec_notify_row.xml" value="0.22631578947368422" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/rec_profile_edit.xml" value="0.22631578947368422" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/recruiter_applicants.xml" value="0.2" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/recruiter_jobpost.xml" value="0.2" />

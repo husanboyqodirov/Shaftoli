@@ -41,7 +41,19 @@ class SignUpActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             finish()
         }
+
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId) {
+                R.id.radio_button_1 -> {
+                    rdGender.visibility = View.VISIBLE
+                }
+                R.id.radio_button_2 -> {
+                    rdGender.visibility = View.GONE
+                }
+            }
+        }
     }
+
 
     private fun View.hideKeyboard() {
         val inputManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -58,10 +70,12 @@ class SignUpActivity : AppCompatActivity() {
             progressBar.visibility = View.GONE
             etRegName.error = "Full name cannot be empty."
             etRegName.requestFocus()
-        } else if (!btnMale.isChecked && !btnFemale.isChecked) {
-            progressBar.visibility = View.GONE
-            Toast.makeText(this, "Gender must be selected.", Toast.LENGTH_SHORT).show()
-            rdGender.requestFocus()
+        } else if (radio_button_1.isChecked){
+                if(!btnMale.isChecked && !btnFemale.isChecked) {
+                progressBar.visibility = View.GONE
+                Toast.makeText(this, "Gender must be selected.", Toast.LENGTH_SHORT).show()
+                rdGender.requestFocus()
+            }
         } else if (TextUtils.isEmpty(email)) {
             progressBar.visibility = View.GONE
             etRegEmail.error = "Email cannot be empty."
