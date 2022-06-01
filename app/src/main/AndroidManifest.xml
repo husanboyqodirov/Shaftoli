@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Shaftoli">
         <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
+        <activity
             android:name=".ApplicantView"
             android:exported="false" />
         <activity

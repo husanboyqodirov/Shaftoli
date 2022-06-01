@@ -143,6 +143,10 @@ class HunterProfileFrag : Fragment() {
             dlg.show()
         }
 
+        view.btnAboutHunter.setOnClickListener {
+            startActivity(Intent(context, AboutActivity::class.java))
+        }
+
         return view
     }
 

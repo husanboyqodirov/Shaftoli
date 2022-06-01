@@ -17,8 +17,12 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_hunter_profile.view.*
 import kotlinx.android.synthetic.main.fragment_rec_profile.*
 import kotlinx.android.synthetic.main.fragment_rec_profile.view.*
+import kotlinx.android.synthetic.main.fragment_rec_profile.view.btnAboutHunter
+import kotlinx.android.synthetic.main.fragment_rec_profile.view.btnProfileEdit
+import kotlinx.android.synthetic.main.fragment_rec_profile.view.txtLogOut
 import kotlinx.android.synthetic.main.hunter_profile_edit.view.*
 import kotlinx.android.synthetic.main.hunter_profile_edit.view.txtEditAddress
 import kotlinx.android.synthetic.main.hunter_profile_edit.view.txtEditEmail
@@ -136,6 +140,10 @@ class RecProfileFrag : Fragment() {
             }
             dlg.setNegativeButton("Cancel", null)
             dlg.show()
+        }
+
+        view.btnAboutHunter.setOnClickListener {
+            startActivity(Intent(context, AboutActivity::class.java))
         }
 
         return view

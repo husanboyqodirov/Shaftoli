@@ -64,18 +64,18 @@ class SignUpActivity : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
         val name = etRegName.text.toString()
         val email = etRegEmail.text.toString()
-        val password: String = etRegPass.text.toString()
-        val confPassword: String = etRegConfPass.text.toString()
+        val password = etRegPass.text.toString()
+        val confPassword = etRegConfPass.text.toString()
         if (TextUtils.isEmpty(name)) {
             progressBar.visibility = View.GONE
             etRegName.error = "Full name cannot be empty."
             etRegName.requestFocus()
         } else if (radio_button_1.isChecked){
                 if(!btnMale.isChecked && !btnFemale.isChecked) {
-                progressBar.visibility = View.GONE
-                Toast.makeText(this, "Gender must be selected.", Toast.LENGTH_SHORT).show()
-                rdGender.requestFocus()
-            }
+                    progressBar.visibility = View.GONE
+                    Toast.makeText(this, "Gender must be selected.", Toast.LENGTH_SHORT).show()
+                    rdGender.requestFocus()
+                }
         } else if (TextUtils.isEmpty(email)) {
             progressBar.visibility = View.GONE
             etRegEmail.error = "Email cannot be empty."

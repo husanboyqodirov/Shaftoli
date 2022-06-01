@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/MyProgramming/Android/# Projects/Shaftoli/app/src/main/res/layout/signup.xml" value="0.22631578947368422" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/drawable-v24/bg_gradient.xml" value="0.162" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.11041666666666666" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/drawable-v24/viewpager_indicators.xml" value="0.17592592592592593" />
@@ -33,6 +34,7 @@
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/drawable/ic_sort.xml" value="0.1305" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/drawable/ic_time.xml" value="0.1495" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/drawable/list_back.xml" value="0.21614583333333334" />
+        <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/activity_about.xml" value="0.22" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/activity_applicant_view.xml" value="0.22631578947368422" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/activity_apply.xml" value="0.1962962962962963" />
         <entry key="..\:/MyProgramming/Android/Shaftoli/app/src/main/res/layout/activity_bottom_nav.xml" value="0.26875" />

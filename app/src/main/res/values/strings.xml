@@ -21,4 +21,5 @@
     <string name="job_time">9AM ~ 6PM</string>
     <string name="notice_txt">By using our service, you agree to acknowledge our <u>Terms of Use</u> and <u>Privacy Policy.</u></string>
     <string name="apply_confirm">Once you apply for this job, recruiter can see your info such as: address, education, speciality, skills, work history and self introduction. Do you agree?</string>
+    <string name="about_desc">Shaftoli is an online service that allows members (both workers and employers) to create profiles and connect with each other in an online social network which may represent real-world professional relationships.</string>
 </resources>
