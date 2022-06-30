@@ -6,15 +6,15 @@
     android:orientation="vertical">
 
     <ImageView
-        android:src="@drawable/announcement"
-        style="@style/welcomeSlideImage" />
+        style="@style/welcomeSlideImage"
+        android:src="@drawable/announcement" />
 
     <TextView
-        android:text="Recruiter"
-        style="@style/welcomeSlideTextView1" />
+        style="@style/welcomeSlideTextView1"
+        android:text="@string/recruiter" />
 
     <TextView
-        android:text="@string/welcomeSlide3"
-        style="@style/welcomeSlideTextView2" />
+        style="@style/welcomeSlideTextView2"
+        android:text="@string/welcomeSlide3" />
 
 </LinearLayout>

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@drawable/favs_back">
+    android:background="@drawable/favs_back"
+    android:gravity="center">
 
     <ProgressBar
         android:id="@+id/pbJhFav"
@@ -25,14 +25,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:text="Vacancies I Saved"
                 android:textAlignment="center"
-                android:textSize="20sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hunterJobFavs"

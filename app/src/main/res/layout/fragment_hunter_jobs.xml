@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@drawable/abstract_back">
+    android:background="@drawable/abstract_back"
+    android:gravity="center">
 
     <ProgressBar
         android:id="@+id/pbJobPosts"
@@ -23,47 +23,49 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_gravity="end"
             android:layout_marginEnd="10dp"
-            android:layout_gravity="end">
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/btnSortJobType"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_sort"
-                android:textColor="@color/white"
+                android:text="All Fields"
                 android:textAllCaps="false"
-                android:text="All Fields" />
+                android:textColor="@color/white" />
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:background="@color/blueWelcome"/>
+                android:background="@color/blueWelcome" />
+
             <Button
                 android:id="@+id/btnSort"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_sort"
-                android:textColor="@color/white"
+                android:text="Date"
                 android:textAllCaps="false"
-                android:text="Date" />
+                android:textColor="@color/white" />
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:background="@color/blueWelcome"/>
+                android:background="@color/blueWelcome" />
 
             <Button
                 android:id="@+id/btnSortReverse"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_arrow_up"
-                android:layout_gravity="end"/>
+                android:layout_gravity="end"
+                android:drawableLeft="@drawable/ic_arrow_up" />
         </LinearLayout>
 
         <ScrollView
@@ -76,6 +78,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hunterJobPosts"
                 android:layout_width="match_parent"
+                android:paddingBottom="70dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

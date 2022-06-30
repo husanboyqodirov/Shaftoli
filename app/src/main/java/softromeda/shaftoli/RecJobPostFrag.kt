@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_rec_job_post.*
 import kotlinx.android.synthetic.main.fragment_rec_job_post.view.*
 
 class RecJobPostFrag : Fragment() {
@@ -36,7 +34,7 @@ class RecJobPostFrag : Fragment() {
             .addOnSuccessListener { result ->
                 val precautionsList = ArrayList<Model>()
                 for (document in result) {
-                    if(document.data["rec_token"] == Firebase.auth.currentUser?.uid) {
+                    if (document.data["rec_token"] == Firebase.auth.currentUser?.uid) {
                         precautionsList.add(
                             Model(
                                 document.data["title"] as String,

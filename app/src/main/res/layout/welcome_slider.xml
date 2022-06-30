@@ -5,7 +5,6 @@
     android:layout_height="match_parent">
 
     <com.scwang.wave.MultiWaveHeader
-        android:id="@+id/waveHeader"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
@@ -17,20 +16,20 @@
         android:layout_height="match_parent" />
 
     <LinearLayout
+        android:id="@+id/dotsLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/dotsLayout"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="50dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:orientation="horizontal" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="5dp"
+        android:layout_above="@id/dotsLayout"
         android:alpha=".5"
-        android:background="@color/white"
-        android:layout_above="@id/dotsLayout" />
+        android:background="@color/white" />
 
     <Button
         android:id="@+id/btnNext"

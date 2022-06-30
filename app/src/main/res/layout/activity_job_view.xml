@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="15dp"
     tools:context=".JobViewActivity">
 
@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/lyJobView"
@@ -28,26 +28,28 @@
             android:id="@+id/txtJobTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:textStyle="bold"
+            android:text="Job Title"
             android:textAlignment="center"
-            android:text="Job Title"/>
+            android:textSize="17sp"
+            android:textStyle="bold" />
 
         <LinearLayout
+            style="@style/jobViewLLayouts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/jobViewLLayouts">
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:text="Recruiter:"
                 android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtJobRecruiter"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <View
@@ -56,20 +58,22 @@
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
+            style="@style/jobViewLLayouts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/jobViewLLayouts">
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:text="Address:"
                 android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtJobAddress"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <View
@@ -78,32 +82,36 @@
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
+            style="@style/jobViewLLayouts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/jobViewLLayouts">
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:text="Salary:"
                 android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtJobSalary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"/>
+                android:layout_marginEnd="20dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:text="Time:"
                 android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtJobTime"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <View
@@ -112,20 +120,22 @@
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
+            style="@style/jobViewLLayouts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/jobViewLLayouts">
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:text="Category:"
                 android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtJobCategory"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <View
@@ -134,20 +144,22 @@
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
+            style="@style/jobViewLLayouts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/jobViewLLayouts">
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:text="Description:"
                 android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtJobDescription"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <View
@@ -156,20 +168,22 @@
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
+            style="@style/jobViewLLayouts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/jobViewLLayouts">
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:text="Required Skills:"
                 android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtJobSkills"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <View
@@ -178,20 +192,22 @@
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
+            style="@style/jobViewLLayouts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/jobViewLLayouts">
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:text="Level of Degree:"
                 android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtJobEducation"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <View
@@ -200,20 +216,22 @@
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
+            style="@style/jobViewLLayouts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/jobViewLLayouts">
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:text="Phone:"
                 android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtJobPhone"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <View
@@ -222,20 +240,22 @@
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
+            style="@style/jobViewLLayouts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/jobViewLLayouts">
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:text="Email:"
                 android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtJobEmail"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <View
@@ -244,21 +264,23 @@
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
+            style="@style/jobViewLLayouts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            style="@style/jobViewLLayouts">
+            android:gravity="center">
+
             <Button
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/btnCallJobView"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_marginEnd="20dp"
                 android:drawableLeft="@drawable/ic_phone"
                 android:text="Call" />
+
             <Button
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/btnEmailJobView"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:drawableLeft="@drawable/ic_email"
@@ -274,8 +296,8 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:backgroundTint="@color/blueWelcome"
-        android:drawableTint="@color/white"
         android:drawableLeft="@drawable/ic_send"
+        android:drawableTint="@color/white"
         android:text="Apply for this vacancy"
         android:textColor="@color/white"
         app:cornerRadius="20dp" />

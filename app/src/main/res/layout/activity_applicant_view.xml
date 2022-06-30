@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingBottom="80dp">
 
@@ -29,10 +29,10 @@
         android:layout_below="@id/profile_image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="3dp"
-        android:textStyle="bold"
         android:text="Husanboy Qodirov"
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -58,10 +58,10 @@
                     android:src="@drawable/ic_gender" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gender:"
-                    style="@style/TextProfileInfo"/>
+                    android:text="Gender:" />
 
                 <TextView
                     android:id="@+id/txtProGender"
@@ -85,10 +85,10 @@
                     android:src="@drawable/ic_location" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextProfileInfo"
-                    android:text="Address:"/>
+                    android:text="Address:" />
 
                 <TextView
                     android:id="@+id/txtProAddress"
@@ -112,10 +112,10 @@
                     android:src="@drawable/ic_school" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextProfileInfo"
-                    android:text="Education:"/>
+                    android:text="Education:" />
 
                 <TextView
                     android:id="@+id/txtProEducation"
@@ -139,10 +139,10 @@
                     android:src="@drawable/ic_field" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextProfileInfo"
-                    android:text="Field:"/>
+                    android:text="Field:" />
 
                 <TextView
                     android:id="@+id/txtProField"
@@ -166,10 +166,10 @@
                     android:src="@drawable/ic_category" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextProfileInfo"
-                    android:text="Skills:"/>
+                    android:text="Skills:" />
 
                 <TextView
                     android:id="@+id/txtProSkills"
@@ -193,10 +193,10 @@
                     android:src="@drawable/ic_email" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Email:"
-                    style="@style/TextProfileInfo"/>
+                    android:text="Email:" />
 
                 <TextView
                     android:id="@+id/txtProEmail"
@@ -220,10 +220,10 @@
                     android:src="@drawable/ic_phone" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phone:"
-                    style="@style/TextProfileInfo"/>
+                    android:text="Phone:" />
 
                 <TextView
                     android:id="@+id/txtProPhone"
@@ -247,10 +247,10 @@
                     android:src="@drawable/ic_jobs" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Work history:"
-                    style="@style/TextProfileInfo"/>
+                    android:text="Work history:" />
 
                 <TextView
                     android:id="@+id/txtProWorkHistory"
@@ -274,11 +274,12 @@
                     android:src="@drawable/ic_person" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Self introduction:"
-                    style="@style/TextProfileInfo" />
+                    android:text="Self introduction:" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/txtProSelfIntro"
                 android:layout_width="wrap_content"
@@ -294,27 +295,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                android:visibility="gone"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/txtStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Accepted!"
-                    android:textStyle="bold"
                     android:layout_marginBottom="10dp"
+                    android:text="Accepted!"
                     android:textAlignment="center"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btnModify"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
+                    android:layout_weight="1"
                     android:backgroundTint="#ccccff"
                     android:drawableTint="@color/white"
-                    android:layout_weight="1"
                     android:text="Modify"
                     android:textAllCaps="false"
                     android:textColor="#333333"
@@ -335,15 +336,15 @@
                     android:id="@+id/btnReject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginHorizontal="20dp"
+                    android:layout_weight="1"
                     android:backgroundTint="#ff5050"
+                    android:drawableLeft="@drawable/ic_clear"
+                    android:drawableTint="@color/white"
                     android:text="Reject"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    android:drawableLeft="@drawable/ic_clear"
-                    android:drawableTint="@color/white"
                     app:cornerRadius="20dp" />
 
                 <Button
@@ -351,10 +352,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:drawableLeft="@drawable/ic_done"
-                    android:backgroundTint="#6699ff"
-                    android:drawableTint="@color/white"
                     android:layout_weight="1"
+                    android:backgroundTint="#6699ff"
+                    android:drawableLeft="@drawable/ic_done"
+                    android:drawableTint="@color/white"
                     android:text="Accept"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
@@ -363,7 +364,6 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 
 
 </RelativeLayout>

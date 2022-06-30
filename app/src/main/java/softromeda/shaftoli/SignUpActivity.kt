@@ -6,17 +6,14 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.view.marginTop
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_rec_messages.*
 import kotlinx.android.synthetic.main.signup.*
 
 class SignUpActivity : AppCompatActivity() {
@@ -43,7 +40,7 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            when(checkedId) {
+            when (checkedId) {
                 R.id.radio_button_1 -> {
                     rdGender.visibility = View.VISIBLE
                 }
@@ -56,7 +53,8 @@ class SignUpActivity : AppCompatActivity() {
 
 
     private fun View.hideKeyboard() {
-        val inputManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputManager =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputManager.hideSoftInputFromWindow(windowToken, 0)
     }
 
@@ -70,12 +68,12 @@ class SignUpActivity : AppCompatActivity() {
             progressBar.visibility = View.GONE
             etRegName.error = "Full name cannot be empty."
             etRegName.requestFocus()
-        } else if (radio_button_1.isChecked){
-                if(!btnMale.isChecked && !btnFemale.isChecked) {
-                    progressBar.visibility = View.GONE
-                    Toast.makeText(this, "Gender must be selected.", Toast.LENGTH_SHORT).show()
-                    rdGender.requestFocus()
-                }
+        } else if (radio_button_1.isChecked) {
+            if (!btnMale.isChecked && !btnFemale.isChecked) {
+                progressBar.visibility = View.GONE
+                Toast.makeText(this, "Gender must be selected.", Toast.LENGTH_SHORT).show()
+                rdGender.requestFocus()
+            }
         } else if (TextUtils.isEmpty(email)) {
             progressBar.visibility = View.GONE
             etRegEmail.error = "Email cannot be empty."
@@ -127,8 +125,7 @@ class SignUpActivity : AppCompatActivity() {
                                                     "password" to password,
                                                     "token" to token
                                                 )
-                                            }
-                                            else if (radio_button_2.isChecked) {
+                                            } else if (radio_button_2.isChecked) {
                                                 collectionName = "recruiters"
                                                 userData = hashMapOf(
                                                     "name" to name,
@@ -147,20 +144,41 @@ class SignUpActivity : AppCompatActivity() {
                                             db.collection(collectionName).document(token)
                                                 .set(userData)
                                                 .addOnSuccessListener {
-                                                    Toast.makeText(this, "You registered successfully! Please confirm your email.", Toast.LENGTH_LONG).show()
+                                                    Toast.makeText(
+                                                        this,
+                                                        "You registered successfully! Please confirm your email.",
+                                                        Toast.LENGTH_LONG
+                                                    ).show()
                                                     if (radio_button_1.isChecked)
-                                                        startActivity(Intent(this, JobHunterActivity::class.java))
+                                                        startActivity(
+                                                            Intent(
+                                                                this,
+                                                                JobHunterActivity::class.java
+                                                            )
+                                                        )
                                                     else if (radio_button_2.isChecked)
-                                                        startActivity(Intent(this, RecruiterActivity::class.java))
+                                                        startActivity(
+                                                            Intent(
+                                                                this,
+                                                                RecruiterActivity::class.java
+                                                            )
+                                                        )
                                                     progressBar.visibility = View.GONE
-                                                    val userType = getSharedPreferences("shaftoli", Context.MODE_PRIVATE).edit()
+                                                    val userType = getSharedPreferences(
+                                                        "shaftoli",
+                                                        Context.MODE_PRIVATE
+                                                    ).edit()
                                                     userType.putString("userType", collectionName)
                                                     userType.apply()
                                                     finish()
                                                 }
                                                 .addOnFailureListener {
                                                     progressBar.visibility = View.GONE
-                                                    Toast.makeText(this, "Registration Error.", Toast.LENGTH_SHORT).show()
+                                                    Toast.makeText(
+                                                        this,
+                                                        "Registration Error.",
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
                                                 }
 
                                         }

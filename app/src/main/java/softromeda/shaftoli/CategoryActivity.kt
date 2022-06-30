@@ -10,9 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import com.google.android.material.internal.ContextUtils.getActivity
 import kotlinx.android.synthetic.main.activity_category.*
-import kotlinx.android.synthetic.main.fragment_rec_vacancy.*
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -51,16 +49,16 @@ class CategoryActivity : AppCompatActivity() {
                 try {
                     var inputStream: InputStream =
                         this.resources.openRawResource(R.raw.job_categories)
-                    inputStream = when(position) {
-                        0 ->  this.resources.openRawResource(R.raw.it_computers_internet)
-                        1 ->  this.resources.openRawResource(R.raw.accounting_audit)
-                        2 ->  this.resources.openRawResource(R.raw.design_photo)
-                        3 ->  this.resources.openRawResource(R.raw.engineering_technology)
-                        4 ->  this.resources.openRawResource(R.raw.human_resources)
-                        5 ->  this.resources.openRawResource(R.raw.culture_arts)
-                        6 ->  this.resources.openRawResource(R.raw.logistics_customs)
-                        7 ->  this.resources.openRawResource(R.raw.marketing_advertising)
-                        8 ->  this.resources.openRawResource(R.raw.medicine_pharmaceuticals)
+                    inputStream = when (position) {
+                        0 -> this.resources.openRawResource(R.raw.it_computers_internet)
+                        1 -> this.resources.openRawResource(R.raw.accounting_audit)
+                        2 -> this.resources.openRawResource(R.raw.design_photo)
+                        3 -> this.resources.openRawResource(R.raw.engineering_technology)
+                        4 -> this.resources.openRawResource(R.raw.human_resources)
+                        5 -> this.resources.openRawResource(R.raw.culture_arts)
+                        6 -> this.resources.openRawResource(R.raw.logistics_customs)
+                        7 -> this.resources.openRawResource(R.raw.marketing_advertising)
+                        8 -> this.resources.openRawResource(R.raw.medicine_pharmaceuticals)
 
 
                         else -> {
@@ -84,8 +82,8 @@ class CategoryActivity : AppCompatActivity() {
             }
         btnCatDone.setOnClickListener {
             checked = ""
-            for(i in 0 until list.size) {
-                checked += if(i < list.size-1)
+            for (i in 0 until list.size) {
+                checked += if (i < list.size - 1)
                     list[i] + ", "
                 else
                     list[i]
@@ -111,7 +109,7 @@ class CategoryActivity : AppCompatActivity() {
             isCheckedIconVisible = true
             isFocusable = true
             setOnClickListener {
-                if(isChecked) {
+                if (isChecked) {
                     list.add(text as String)
                 } else {
                     list.remove(text as String)

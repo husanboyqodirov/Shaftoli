@@ -1,7 +1,5 @@
 package softromeda.shaftoli
 
-import java.util.*
-
 class Model(
     var jobsTitle: String,
     var jobsCompany: String,

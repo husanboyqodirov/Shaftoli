@@ -20,8 +20,8 @@
         android:layout_marginTop="10dp"
         android:hint="Address"
         android:inputType="text" />
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtField"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

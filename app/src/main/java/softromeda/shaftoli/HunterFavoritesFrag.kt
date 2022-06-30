@@ -16,7 +16,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_hunter_favs.*
 import kotlinx.android.synthetic.main.fragment_hunter_favs.view.*
-import kotlinx.android.synthetic.main.item_posts.*
 
 class HunterFavoritesFrag : Fragment() {
 
@@ -107,7 +106,7 @@ class HunterFavoritesFrag : Fragment() {
                                             .setPositiveButton("Yes") { _, _ ->
                                                 jobIDs.removeAt(position)
                                                 var finalFavs: String = ""
-                                                for(s in jobIDs)
+                                                for (s in jobIDs)
                                                     finalFavs += s
                                                 Firebase.auth.currentUser?.let { it1 ->
                                                     db.collection("job_hunters").document(it1.uid)

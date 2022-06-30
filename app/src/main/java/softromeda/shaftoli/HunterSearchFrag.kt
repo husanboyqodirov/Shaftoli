@@ -95,9 +95,7 @@ class HunterSearchFrag : Fragment() {
                 val precautionsList = ArrayList<Model>()
                 for (document in result) {
                     jobIDs.add(document.id)
-                    if (txtCat.isEmpty() && txtEdu.isEmpty() && txtSalaryMax.isEmpty() && txtSalaryMin.isEmpty())
-                        addJob(precautionsList, document)
-                    else if (txtCat == document.data["category"] || txtEdu == document.data["education"] || txtSalaryMax.toFloat() >= (document.data["salary"] as String).toFloat() || txtSalaryMin.toFloat() <= (document.data["salary"] as String).toFloat()) {
+                    if (txtSalaryMin.toFloat() <= (document.data["salary"] as String).toFloat()) {
                         addJob(precautionsList, document)
                     }
                 }

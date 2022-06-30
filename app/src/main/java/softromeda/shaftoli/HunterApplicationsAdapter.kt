@@ -9,7 +9,11 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 
-class HunterApplicationsAdapter(var mCtx: Context, var resources: Int, var items: MutableList<HunterApplicationsModel>):
+class HunterApplicationsAdapter(
+    var mCtx: Context,
+    var resources: Int,
+    var items: MutableList<HunterApplicationsModel>
+) :
     ArrayAdapter<HunterApplicationsModel>(mCtx, resources, items) {
     @SuppressLint("ViewHolder", "UseCompatLoadingForDrawables")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -27,9 +31,9 @@ class HunterApplicationsAdapter(var mCtx: Context, var resources: Int, var items
         dateText.text = mItem.date
         statusText.text = mItem.status
 
-        if(mItem.status == "Accepted!") {
+        if (mItem.status == "Accepted!") {
             statusText.setTextColor(Color.parseColor("#00cc00"))
-        } else if(mItem.status == "Rejected.") {
+        } else if (mItem.status == "Rejected.") {
             statusText.setTextColor(Color.parseColor("#ff3300"))
         }
 

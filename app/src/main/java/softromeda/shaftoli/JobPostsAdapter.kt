@@ -15,12 +15,11 @@ class JobPostsAdapter(var jobsList: ArrayList<Model>) :
         return ViewHolder(inflater, parent)
     }
 
-    interface ItemClick
-    {
+    interface ItemClick {
         fun onClick(view: View, position: Int)
     }
 
-    interface ItemLongClick{
+    interface ItemLongClick {
         fun onLongClick(view: View, position: Int)
     }
 
@@ -36,15 +35,13 @@ class JobPostsAdapter(var jobsList: ArrayList<Model>) :
         val jobsModel = jobsList[position]
         holder.bind(jobsModel)
 
-        if(itemClick != null)
-        {
+        if (itemClick != null) {
             holder.itemView.setOnClickListener { v ->
                 itemClick?.onClick(v, position)
             }
         }
 
-        if(itemLongLick != null)
-        {
+        if (itemLongLick != null) {
             holder.itemView.setOnLongClickListener { v ->
                 itemLongLick?.onLongClick(v, position)
                 true
@@ -77,7 +74,7 @@ class JobPostsAdapter(var jobsList: ArrayList<Model>) :
             jobCategory.text = jobPostsModel.jobCategories
             jobCreated.text = jobPostsModel.jobCreated
 
-            if(jobPostsModel.viewID == "favs"){
+            if (jobPostsModel.viewID == "favs") {
                 imgStar.visibility = View.VISIBLE
                 jobCatLy.visibility = View.GONE
             }

@@ -19,7 +19,6 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_hunter_profile.*
 import kotlinx.android.synthetic.main.fragment_hunter_profile.view.*
 import kotlinx.android.synthetic.main.hunter_profile_edit.view.*
-import kotlinx.android.synthetic.main.signup.*
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader

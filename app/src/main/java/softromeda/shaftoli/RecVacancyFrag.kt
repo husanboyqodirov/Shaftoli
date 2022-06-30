@@ -21,13 +21,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_rec_profile.*
 import kotlinx.android.synthetic.main.fragment_rec_vacancy.*
 import kotlinx.android.synthetic.main.fragment_rec_vacancy.view.*
-import java.security.Timestamp
-import java.time.Instant.now
-import java.time.LocalDateTime.now
-import java.time.MonthDay.now
 
 class RecVacancyFrag : Fragment() {
 
@@ -151,27 +146,29 @@ class RecVacancyFrag : Fragment() {
                                 val db = Firebase.firestore
 
                                 db.collection("vacancies")
-                                    .add(mapOf(
-                                        "title" to txtVacancyName,
-                                        "recruiter" to txtRecruiter,
-                                        "address" to txtAddress,
-                                        "applicants" to "",
-                                        "field" to txtField,
-                                        "state" to txtState,
-                                        "country" to txtCountry,
-                                        "salary" to txtSalary,
-                                        "education" to txtEducation,
-                                        "timeFrom" to txtTimeFrom,
-                                        "timeUntil" to txtTimeUntil,
-                                        "phone" to txtPhone,
-                                        "email" to txtEmail,
-                                        "description" to txtDescription,
-                                        "skills" to txtSkill,
-                                        "category" to txtCategory,
-                                        "deadline" to txtDeadline,
-                                        "rec_token" to Firebase.auth.currentUser?.uid,
-                                        "created" to FieldValue.serverTimestamp()
-                                    ))
+                                    .add(
+                                        mapOf(
+                                            "title" to txtVacancyName,
+                                            "recruiter" to txtRecruiter,
+                                            "address" to txtAddress,
+                                            "applicants" to "",
+                                            "field" to txtField,
+                                            "state" to txtState,
+                                            "country" to txtCountry,
+                                            "salary" to txtSalary,
+                                            "education" to txtEducation,
+                                            "timeFrom" to txtTimeFrom,
+                                            "timeUntil" to txtTimeUntil,
+                                            "phone" to txtPhone,
+                                            "email" to txtEmail,
+                                            "description" to txtDescription,
+                                            "skills" to txtSkill,
+                                            "category" to txtCategory,
+                                            "deadline" to txtDeadline,
+                                            "rec_token" to Firebase.auth.currentUser?.uid,
+                                            "created" to FieldValue.serverTimestamp()
+                                        )
+                                    )
                                     .addOnSuccessListener {
                                         val userType = context?.getSharedPreferences(
                                             "shaftoli",

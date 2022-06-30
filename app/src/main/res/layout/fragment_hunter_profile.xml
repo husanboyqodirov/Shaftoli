@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingBottom="80dp">
 
@@ -52,10 +52,10 @@
         android:layout_below="@id/profile_image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="3dp"
-        android:textStyle="bold"
         android:text="Husanboy Qodirov"
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -81,10 +81,10 @@
                     android:src="@drawable/ic_gender" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gender:"
-                    style="@style/TextProfileInfo"/>
+                    android:text="Gender:" />
 
                 <TextView
                     android:id="@+id/txtProGender"
@@ -108,10 +108,10 @@
                     android:src="@drawable/ic_location" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextProfileInfo"
-                    android:text="Address:"/>
+                    android:text="Address:" />
 
                 <TextView
                     android:id="@+id/txtProAddress"
@@ -135,10 +135,10 @@
                     android:src="@drawable/ic_school" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextProfileInfo"
-                    android:text="Education:"/>
+                    android:text="Education:" />
 
                 <TextView
                     android:id="@+id/txtProEducation"
@@ -162,10 +162,10 @@
                     android:src="@drawable/ic_field" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextProfileInfo"
-                    android:text="Field:"/>
+                    android:text="Field:" />
 
                 <TextView
                     android:id="@+id/txtProField"
@@ -189,10 +189,10 @@
                     android:src="@drawable/ic_category" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextProfileInfo"
-                    android:text="Skills:"/>
+                    android:text="Skills:" />
 
                 <TextView
                     android:id="@+id/txtProSkills"
@@ -216,10 +216,10 @@
                     android:src="@drawable/ic_email" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Email:"
-                    style="@style/TextProfileInfo"/>
+                    android:text="Email:" />
 
                 <TextView
                     android:id="@+id/txtProEmail"
@@ -243,10 +243,10 @@
                     android:src="@drawable/ic_phone" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phone:"
-                    style="@style/TextProfileInfo"/>
+                    android:text="Phone:" />
 
                 <TextView
                     android:id="@+id/txtProPhone"
@@ -270,10 +270,10 @@
                     android:src="@drawable/ic_jobs" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Work history:"
-                    style="@style/TextProfileInfo"/>
+                    android:text="Work history:" />
 
                 <TextView
                     android:id="@+id/txtProWorkHistory"
@@ -297,11 +297,12 @@
                     android:src="@drawable/ic_person" />
 
                 <TextView
+                    style="@style/TextProfileInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Self introduction:"
-                    style="@style/TextProfileInfo" />
+                    android:text="Self introduction:" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/txtProSelfIntro"
                 android:layout_width="wrap_content"
@@ -320,11 +321,11 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="20dp"
-        android:text="Log Out"
-        android:textColor="@color/white"
         android:backgroundTint="#6699ff"
+        android:text="Log Out"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="18sp"
-        app:cornerRadius="20dp"/>
+        app:cornerRadius="20dp" />
 
 </RelativeLayout>

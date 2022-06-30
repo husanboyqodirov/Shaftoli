@@ -1,16 +1,14 @@
 package softromeda.shaftoli
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_applicant_view.*
-import kotlinx.android.synthetic.main.fragment_hunter_profile.*
 import kotlinx.android.synthetic.main.fragment_hunter_profile.profile_image
 import kotlinx.android.synthetic.main.fragment_hunter_profile.txtProAddress
 import kotlinx.android.synthetic.main.fragment_hunter_profile.txtProEducation
@@ -31,9 +29,9 @@ class ApplicantView : AppCompatActivity() {
         val documentID = intent.getStringExtra("documentID")
         val docStatus = intent.getStringExtra("status")
 
-        if(docStatus != "Waiting...") {
+        if (docStatus != "Waiting...") {
             lyConfirm.visibility = View.GONE
-            if(docStatus == "Accepted!") {
+            if (docStatus == "Accepted!") {
                 txtStatus.text = "You have accepted this applicant!"
             } else {
                 txtStatus.text = "You have rejected this applicant."
@@ -72,7 +70,7 @@ class ApplicantView : AppCompatActivity() {
             .set(stat, SetOptions.merge())
             .addOnSuccessListener {
                 lyConfirm.visibility = View.GONE
-                if(act == "Accepted!") {
+                if (act == "Accepted!") {
                     txtStatus.text = "You have accepted this applicant!"
                 } else {
                     txtStatus.text = "You have rejected this applicant."

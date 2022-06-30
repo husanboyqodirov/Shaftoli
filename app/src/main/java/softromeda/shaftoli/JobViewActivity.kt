@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -13,7 +12,6 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_apply.*
 import kotlinx.android.synthetic.main.activity_apply.view.*
 import kotlinx.android.synthetic.main.activity_job_view.*
 
@@ -26,7 +24,7 @@ class JobViewActivity : AppCompatActivity() {
 
         val db = Firebase.firestore
 
-        var applicants= ""
+        var applicants = ""
         var rec_token = ""
         var exp_years = ""
         var appGender = ""
@@ -40,7 +38,8 @@ class JobViewActivity : AppCompatActivity() {
                         document.data!!["state"] as String + ", " +
                         document.data!!["country"] as String
                 txtJobAddress.text = address
-                val time = document.data!!["timeFrom"] as String + " ~ " + document.data!!["timeUntil"] as String
+                val time =
+                    document.data!!["timeFrom"] as String + " ~ " + document.data!!["timeUntil"] as String
                 txtJobSalary.text = "$" + document.data?.get("salary") as String
                 txtJobTime.text = time
                 txtJobCategory.text = document.data?.get("category") as String
@@ -68,7 +67,10 @@ class JobViewActivity : AppCompatActivity() {
             intent.type = "text/plain"
             intent.putExtra(Intent.EXTRA_EMAIL, txtJobEmail.text)
             intent.putExtra(Intent.EXTRA_SUBJECT, "Job Application")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hello Sir/Madam.\n\nI am writing to apply for a job vacancy you posted on Shaftoli platform.")
+            intent.putExtra(
+                Intent.EXTRA_TEXT,
+                "Hello Sir/Madam.\n\nI am writing to apply for a job vacancy you posted on Shaftoli platform."
+            )
             startActivity(Intent.createChooser(intent, "Choose Email Client"))
         }
 
@@ -97,8 +99,7 @@ class JobViewActivity : AppCompatActivity() {
                 if (isChecked) {
                     dialogView.lyExperience.visibility = View.VISIBLE
                     exp_years = dialogView.txtYears.text.toString()
-                }
-                else {
+                } else {
                     dialogView.lyExperience.visibility = View.GONE
                     exp_years = "None"
                 }
@@ -113,49 +114,49 @@ class JobViewActivity : AppCompatActivity() {
             dlg.setView(dialogView)
             dlg.setPositiveButton("Yes, Apply") { _, _ ->
                 run {
-                        Firebase.auth.currentUser?.let { it1 ->
-                            if(!(applicants.contains(it1.uid, ignoreCase = false))) {
-                                if (jobID != null) {
-                                    db.collection("vacancies").document(jobID)
-                                        .set(
-                                            hashMapOf(
-                                                "applicants" to "${it1.uid}$applicants",
-                                                "new_applicant" to "true"
-                                            ),
-                                            SetOptions.merge()
-                                        )
-                                        .addOnSuccessListener {
-                                            db.collection("applications").document()
-                                                .set(
-                                                    hashMapOf(
-                                                        "job_id" to jobID,
-                                                        "recruiter" to rec_token,
-                                                        "rec_name" to txtJobRecruiter.text.toString(),
-                                                        "applicant_token" to it1.uid,
-                                                        "applicant_name" to dialogView.editName.text.toString(),
-                                                        "gender" to appGender,
-                                                        "job_title" to txtJobTitle.text.toString(),
-                                                        "status" to "Waiting...",
-                                                        "date" to FieldValue.serverTimestamp()
-                                                    )
+                    Firebase.auth.currentUser?.let { it1 ->
+                        if (!(applicants.contains(it1.uid, ignoreCase = false))) {
+                            if (jobID != null) {
+                                db.collection("vacancies").document(jobID)
+                                    .set(
+                                        hashMapOf(
+                                            "applicants" to "${it1.uid}$applicants",
+                                            "new_applicant" to "true"
+                                        ),
+                                        SetOptions.merge()
+                                    )
+                                    .addOnSuccessListener {
+                                        db.collection("applications").document()
+                                            .set(
+                                                hashMapOf(
+                                                    "job_id" to jobID,
+                                                    "recruiter" to rec_token,
+                                                    "rec_name" to txtJobRecruiter.text.toString(),
+                                                    "applicant_token" to it1.uid,
+                                                    "applicant_name" to dialogView.editName.text.toString(),
+                                                    "gender" to appGender,
+                                                    "job_title" to txtJobTitle.text.toString(),
+                                                    "status" to "Waiting...",
+                                                    "date" to FieldValue.serverTimestamp()
                                                 )
-                                                .addOnSuccessListener {
-                                                    applicants = it1.uid + applicants
-                                                    Snackbar.make(
-                                                        contextV,
-                                                        "You have successfully applied for this job! Recruiter will contact you soon.",
-                                                        Snackbar.LENGTH_LONG
-                                                    ).show()
-                                                }
-                                        }
-                                }
-                            } else {
-                                Snackbar.make(
-                                    contextV,
-                                    "You have already send an application for this vacancy.",
-                                    Snackbar.LENGTH_LONG
-                                ).show()
+                                            )
+                                            .addOnSuccessListener {
+                                                applicants = it1.uid + applicants
+                                                Snackbar.make(
+                                                    contextV,
+                                                    "You have successfully applied for this job! Recruiter will contact you soon.",
+                                                    Snackbar.LENGTH_LONG
+                                                ).show()
+                                            }
+                                    }
                             }
+                        } else {
+                            Snackbar.make(
+                                contextV,
+                                "You have already send an application for this vacancy.",
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                        }
 
                     }
 

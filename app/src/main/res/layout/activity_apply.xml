@@ -31,7 +31,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <RadioGroup
-                android:id="@+id/genderRadioG"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checkedButton="@+id/radio_button_1"
@@ -84,16 +83,16 @@
                 android:id="@+id/chkExperience"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="false"
                 android:layout_marginBottom="5dp"
+                android:checked="false"
                 android:text="Do you have job experience?" />
 
             <LinearLayout
                 android:id="@+id/lyExperience"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
                 android:visibility="gone">
 
                 <TextView
@@ -149,7 +148,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/apply_confirm"/>
+                android:text="@string/apply_confirm" />
 
         </LinearLayout>
     </ScrollView>

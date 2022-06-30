@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
@@ -22,7 +21,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_hunter_jobs.*
 import kotlinx.android.synthetic.main.fragment_hunter_jobs.view.*
-import kotlinx.android.synthetic.main.hunter_profile_edit.view.*
 
 
 class HunterJobsFrag : Fragment() {
@@ -43,7 +41,7 @@ class HunterJobsFrag : Fragment() {
         var ascending = false
         var sortBy = "created"
 
-        getVacancies(true,"created", Query.Direction.DESCENDING)
+        getVacancies(true, "created", Query.Direction.DESCENDING)
         view.btnSortJobType.setOnClickListener {
             val listPopupWindow =
                 context?.let { it1 -> ListPopupWindow(it1, null, R.attr.listPopupWindowStyle) }
@@ -215,7 +213,8 @@ class HunterJobsFrag : Fragment() {
                                 .setPositiveButton("Yes") { _, _ ->
                                     val docRef = Firebase.auth.currentUser?.let { it1 ->
                                         db.collection("job_hunters").document(
-                                            it1.uid)
+                                            it1.uid
+                                        )
                                     }
                                     docRef?.get()?.addOnSuccessListener { document ->
                                         favs = document.data?.get("favorites") as String

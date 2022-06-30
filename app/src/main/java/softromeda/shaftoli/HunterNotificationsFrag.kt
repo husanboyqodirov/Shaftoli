@@ -1,17 +1,14 @@
 package softromeda.shaftoli
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_rec_notifications.*
 import kotlinx.android.synthetic.main.fragment_rec_notifications.view.*
 
 class HunterNotificationsFrag : Fragment() {
@@ -41,8 +38,21 @@ class HunterNotificationsFrag : Fragment() {
                     val dateSTR = dateStamp.toString()
                     val dateCut = dateSTR.substring(0, 10) + ", " + dateSTR.substring(30, 34)
 
-                    list.add(HunterApplicationsModel(document.data["job_title"] as String, document.data["rec_name"] as String, dateCut, document.data["status"] as String,))
-                    view.recListView.adapter = context?.let { HunterApplicationsAdapter(it, R.layout.hunter_notify_row, list) }
+                    list.add(
+                        HunterApplicationsModel(
+                            document.data["job_title"] as String,
+                            document.data["rec_name"] as String,
+                            dateCut,
+                            document.data["status"] as String,
+                        )
+                    )
+                    view.recListView.adapter = context?.let {
+                        HunterApplicationsAdapter(
+                            it,
+                            R.layout.hunter_notify_row,
+                            list
+                        )
+                    }
 
                 }
                 if (list.isNullOrEmpty())

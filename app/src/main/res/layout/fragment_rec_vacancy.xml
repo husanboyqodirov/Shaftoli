@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="15dp">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,8 +19,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/ic_jobs"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                app:startIconDrawable="@drawable/ic_jobs">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtVacancyName"
@@ -33,8 +34,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/ic_corporate"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                app:startIconDrawable="@drawable/ic_corporate">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtRecruiter"
@@ -48,8 +49,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/ic_location"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                app:startIconDrawable="@drawable/ic_location">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtAddress"
@@ -62,8 +63,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -101,8 +102,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/ic_money"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                app:startIconDrawable="@drawable/ic_money">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtSalary"
@@ -130,30 +131,30 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
 
                 <Button
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:id="@+id/txtTimeFrom"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:drawableLeft="@drawable/ic_time"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="1"
-                    android:textAllCaps="false"
+                    android:drawableLeft="@drawable/ic_time"
                     android:text="From"
-                    android:layout_marginEnd="5dp"/>
+                    android:textAllCaps="false" />
 
                 <Button
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:id="@+id/txtTimeUntil"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:drawableLeft="@drawable/ic_time"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:textAllCaps="false"
+                    android:drawableLeft="@drawable/ic_time"
                     android:text="Until"
-                    android:layout_marginStart="5dp"/>
+                    android:textAllCaps="false" />
 
             </LinearLayout>
 
@@ -161,8 +162,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/ic_phone"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                app:startIconDrawable="@drawable/ic_phone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtPhone"
@@ -176,8 +177,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/ic_email"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtEmail"
@@ -188,13 +189,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:startIconDrawable="@drawable/ic_description"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                app:startIconDrawable="@drawable/ic_description">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtDescription"
@@ -208,8 +208,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/ic_description"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                app:startIconDrawable="@drawable/ic_description">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtSkills"
@@ -219,50 +219,50 @@
                     android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-
-            <Button
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:id="@+id/btnDeadline"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:layout_marginEnd="5dp"
-                android:drawableLeft="@drawable/ic_calendar"
-                android:text="Deadline" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnDeadline"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_calendar"
+                    android:text="Deadline"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/btnChooseCategory"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_category"
+                    android:text="Category"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
 
             <Button
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:id="@+id/btnChooseCategory"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:layout_marginStart="5dp"
-                android:drawableLeft="@drawable/ic_category"
-                android:text="Category" />
-
-        </LinearLayout>
-
-            <Button
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/btnAnnounce"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:layout_marginBottom="70dp"
-                app:cornerRadius="20dp"
-                android:textColor="@color/white"
-                android:drawableTint="@color/white"
-                android:textAllCaps="false"
-                android:textSize="16sp"
                 android:backgroundTint="#9966ff"
                 android:drawableLeft="@drawable/ic_publish"
-                android:text="Create Announcement" />
+                android:drawableTint="@color/white"
+                android:text="Create Announcement"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:cornerRadius="20dp" />
         </LinearLayout>
 
     </ScrollView>
