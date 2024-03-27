@@ -2,6 +2,25 @@
 
 <html>
 
+<head>
+	<style type="text/css">
+		a {
+		  border: none;
+		  color: white;
+		  padding: 15px 32px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 16px;
+		  margin: 4px 2px;
+		  cursor: pointer;
+		  background-color: #04AA6D;
+		}
+	</style>
+</head>
+
+<p><a href="files/Shaftoli.apk">데모 다운로드</a></p>
+
 <h2>사용케이스</h2>
 <img src="files/use_case.png" />
 

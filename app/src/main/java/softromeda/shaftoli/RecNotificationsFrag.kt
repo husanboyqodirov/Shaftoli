@@ -11,20 +11,17 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_rec_notifications.view.*
-
+import softromeda.shaftoli.databinding.FragmentRecNotificationsBinding
 
 class RecNotificationsFrag : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentRecNotificationsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_rec_notifications, container, false)
+        binding = FragmentRecNotificationsBinding.inflate(inflater, container, false)
+        val view = binding.root
         val list = mutableListOf<RecNotifyModel>()
 
         val db = Firebase.firestore
@@ -47,9 +44,9 @@ class RecNotificationsFrag : Fragment() {
                             )
                         )
                     }
-                    view.recListView.adapter =
+                    binding.recListView.adapter =
                         context?.let { RecNotifyAdapter(it, R.layout.rec_notify_row, list) }
-                    view.recListView.setOnItemClickListener { _: AdapterView<*>, _: View, position: Int, _: Long ->
+                    binding.recListView.setOnItemClickListener { _: AdapterView<*>, _: View, position: Int, _: Long ->
                         val intent = Intent(context, ApplicantView::class.java)
                         intent.putExtra("applicantToken", list[position].applicantToken)
                         intent.putExtra("documentID", document.id)
@@ -59,7 +56,7 @@ class RecNotificationsFrag : Fragment() {
                     }
                 }
                 if (list.isNullOrEmpty())
-                    view.emptyLayout.visibility = View.VISIBLE
+                    binding.emptyLayout.visibility = View.VISIBLE
             }
 
         return view

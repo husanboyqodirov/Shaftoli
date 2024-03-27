@@ -14,22 +14,19 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_hunter_favs.*
-import kotlinx.android.synthetic.main.fragment_hunter_favs.view.*
+import softromeda.shaftoli.databinding.FragmentHunterFavsBinding
 
 class HunterFavoritesFrag : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentHunterFavsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_hunter_favs, container, false)
+        binding = FragmentHunterFavsBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-        view.hunterJobFavs.layoutManager = LinearLayoutManager(
+        binding.hunterJobFavs.layoutManager = LinearLayoutManager(
             context,
             RecyclerView.VERTICAL, true
         )
@@ -80,7 +77,7 @@ class HunterFavoritesFrag : Fragment() {
                             )
                         )
                         val precautionsAdapter = JobPostsAdapter(precautionsList)
-                        hunterJobFavs.adapter = precautionsAdapter
+                        binding.hunterJobFavs.adapter = precautionsAdapter
 
                         val adapter = JobPostsAdapter(precautionsList)
                         adapter.itemClick = object : JobPostsAdapter.ItemClick {
@@ -128,12 +125,12 @@ class HunterFavoritesFrag : Fragment() {
                                 }
                             }
 
-                        hunterJobFavs.adapter = adapter
+                        binding.hunterJobFavs.adapter = adapter
                     }
 
             }
-            pbJhFav.visibility = View.GONE
-            lyJobFavs.visibility = View.VISIBLE
+            binding.pbJhFav.visibility = View.GONE
+            binding.lyJobFavs.visibility = View.VISIBLE
         }
     }
 }

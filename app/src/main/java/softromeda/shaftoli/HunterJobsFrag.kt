@@ -19,21 +19,19 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_hunter_jobs.*
-import kotlinx.android.synthetic.main.fragment_hunter_jobs.view.*
+import softromeda.shaftoli.databinding.FragmentHunterJobsBinding
 
 
 class HunterJobsFrag : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentHunterJobsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_hunter_jobs, container, false)
-        view.hunterJobPosts.layoutManager = LinearLayoutManager(
+        binding = FragmentHunterJobsBinding.inflate(inflater,container, false)
+        val view = binding.root
+        binding.hunterJobPosts.layoutManager = LinearLayoutManager(
             context,
             RecyclerView.VERTICAL, false
         )
@@ -42,11 +40,11 @@ class HunterJobsFrag : Fragment() {
         var sortBy = "created"
 
         getVacancies(true, "created", Query.Direction.DESCENDING)
-        view.btnSortJobType.setOnClickListener {
+        binding.btnSortJobType.setOnClickListener {
             val listPopupWindow =
                 context?.let { it1 -> ListPopupWindow(it1, null, R.attr.listPopupWindowStyle) }
             if (listPopupWindow != null) {
-                listPopupWindow.anchorView = btnSortJobType
+                listPopupWindow.anchorView = binding.btnSortJobType
             }
             val items = listOf("All Fields", "Speciality")
             val adapter = ArrayAdapter(requireContext(), R.layout.popup_menu, items)
@@ -54,10 +52,10 @@ class HunterJobsFrag : Fragment() {
 
             listPopupWindow?.setOnItemClickListener { _: AdapterView<*>?, _: View?, chosen: Int, _: Long ->
                 listPopupWindow.dismiss()
-                view.btnSortJobType.text = items[chosen]
+                binding.btnSortJobType.text = items[chosen]
                 if (chosen == 0) {
                     getVacancies(true, sortBy, Query.Direction.DESCENDING)
-                    btnSortReverse.setCompoundDrawablesWithIntrinsicBounds(
+                    binding.btnSortReverse.setCompoundDrawablesWithIntrinsicBounds(
                         R.drawable.ic_arrow_up,
                         0,
                         0,
@@ -66,7 +64,7 @@ class HunterJobsFrag : Fragment() {
                 } else if (chosen == 1) {
                     sortBy = "salary"
                     getVacancies(false, sortBy, Query.Direction.DESCENDING)
-                    btnSortReverse.setCompoundDrawablesWithIntrinsicBounds(
+                    binding.btnSortReverse.setCompoundDrawablesWithIntrinsicBounds(
                         R.drawable.ic_arrow_up,
                         0,
                         0,
@@ -78,11 +76,11 @@ class HunterJobsFrag : Fragment() {
             listPopupWindow?.show()
         }
 
-        view.btnSort.setOnClickListener {
+        binding.btnSort.setOnClickListener {
             val listPopupWindow =
                 context?.let { it1 -> ListPopupWindow(it1, null, R.attr.listPopupWindowStyle) }
             if (listPopupWindow != null) {
-                listPopupWindow.anchorView = btnSort
+                listPopupWindow.anchorView = binding.btnSort
             }
             val items = listOf("Date", "Salary")
             val adapter = ArrayAdapter(requireContext(), R.layout.popup_menu, items)
@@ -90,11 +88,11 @@ class HunterJobsFrag : Fragment() {
 
             listPopupWindow?.setOnItemClickListener { _: AdapterView<*>?, _: View?, chosen: Int, _: Long ->
                 listPopupWindow.dismiss()
-                view.btnSort.text = items[chosen]
+                binding.btnSort.text = items[chosen]
                 if (chosen == 0) {
                     sortBy = "created"
                     getVacancies(true, sortBy, Query.Direction.DESCENDING)
-                    btnSortReverse.setCompoundDrawablesWithIntrinsicBounds(
+                    binding.btnSortReverse.setCompoundDrawablesWithIntrinsicBounds(
                         R.drawable.ic_arrow_up,
                         0,
                         0,
@@ -103,7 +101,7 @@ class HunterJobsFrag : Fragment() {
                 } else if (chosen == 1) {
                     sortBy = "salary"
                     getVacancies(true, sortBy, Query.Direction.DESCENDING)
-                    btnSortReverse.setCompoundDrawablesWithIntrinsicBounds(
+                    binding.btnSortReverse.setCompoundDrawablesWithIntrinsicBounds(
                         R.drawable.ic_arrow_up,
                         0,
                         0,
@@ -115,10 +113,10 @@ class HunterJobsFrag : Fragment() {
             listPopupWindow?.show()
         }
 
-        view.btnSortReverse.setOnClickListener {
+        binding.btnSortReverse.setOnClickListener {
             if (ascending) {
                 getVacancies(true, sortBy, Query.Direction.DESCENDING)
-                btnSortReverse.setCompoundDrawablesWithIntrinsicBounds(
+                binding.btnSortReverse.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.ic_arrow_up,
                     0,
                     0,
@@ -126,7 +124,7 @@ class HunterJobsFrag : Fragment() {
                 )
             } else {
                 getVacancies(true, sortBy, Query.Direction.ASCENDING)
-                btnSortReverse.setCompoundDrawablesWithIntrinsicBounds(
+                binding.btnSortReverse.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.ic_arrow_down,
                     0,
                     0,
@@ -188,7 +186,7 @@ class HunterJobsFrag : Fragment() {
 
                 }
                 val precautionsAdapter = JobPostsAdapter(precautionsList)
-                hunterJobPosts.adapter = precautionsAdapter
+                binding.hunterJobPosts.adapter = precautionsAdapter
 
                 val adapter = JobPostsAdapter(precautionsList)
                 adapter.itemClick = object : JobPostsAdapter.ItemClick {
@@ -239,10 +237,10 @@ class HunterJobsFrag : Fragment() {
                     }
                 }
 
-                hunterJobPosts.adapter = adapter
+                binding.hunterJobPosts.adapter = adapter
 
-                pbJobPosts.visibility = View.GONE
-                lyJobPosts.visibility = View.VISIBLE
+                binding.pbJobPosts.visibility = View.GONE
+                binding.lyJobPosts.visibility = View.VISIBLE
             }
             .addOnFailureListener {
             }

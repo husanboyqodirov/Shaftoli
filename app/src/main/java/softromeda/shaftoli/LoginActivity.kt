@@ -12,24 +12,25 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.login.*
-import kotlinx.android.synthetic.main.signup.*
+import softromeda.shaftoli.databinding.LoginBinding
 
 
 class LoginActivity : AppCompatActivity() {
     var mAuth: FirebaseAuth? = null
+    private lateinit var binding: LoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login)
+        binding = LoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         mAuth = FirebaseAuth.getInstance()
 
-        btnLogin.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             it.hideKeyboard()
             loginUser()
         }
-        tvRegisterHere.setOnClickListener {
+        binding.tvRegisterHere.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
             finish()
         }
@@ -42,17 +43,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser() {
-        prBarLogin.visibility = View.VISIBLE
-        val email = etLoginEmail.text.toString()
-        val password: String = etLoginPass.text.toString()
+        binding.prBarLogin.visibility = View.VISIBLE
+        val email = binding.etLoginEmail.text.toString()
+        val password: String = binding.etLoginPass.text.toString()
         if (TextUtils.isEmpty(email)) {
-            progressBar.visibility = View.GONE
-            etLoginEmail.error = "Email cannot be empty."
-            etLoginEmail.requestFocus()
+            binding.prBarLogin.visibility = View.GONE
+            binding.etLoginEmail.error = "Email cannot be empty."
+            binding.etLoginEmail.requestFocus()
         } else if (TextUtils.isEmpty(password)) {
-            progressBar.visibility = View.GONE
-            etLoginPass.error = "Password cannot be empty."
-            etLoginPass.requestFocus()
+            binding.prBarLogin.visibility = View.GONE
+            binding.etLoginPass.error = "Password cannot be empty."
+            binding.etLoginPass.requestFocus()
         } else {
             mAuth!!.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -77,11 +78,11 @@ class LoginActivity : AppCompatActivity() {
                             userType.apply()
                             finish()
                         }
-                    prBarLogin.visibility = View.GONE
+                    binding.prBarLogin.visibility = View.GONE
                 } else {
                     Toast.makeText(this, "Please check your email and password.", Toast.LENGTH_LONG)
                         .show()
-                    prBarLogin.visibility = View.GONE
+                    binding.prBarLogin.visibility = View.GONE
                 }
             }
         }

@@ -4,22 +4,30 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.RadioButton
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.slider.Slider
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_apply.view.*
-import kotlinx.android.synthetic.main.activity_job_view.*
+import softromeda.shaftoli.databinding.ActivityJobViewBinding
 
 class JobViewActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityJobViewBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityJobViewBinding.inflate(layoutInflater)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        setContentView(R.layout.activity_job_view)
+        setContentView(binding.root)
         val jobID = intent.getStringExtra("jobID")
 
         val db = Firebase.firestore
@@ -32,40 +40,40 @@ class JobViewActivity : AppCompatActivity() {
         val docRef = jobID?.let { db.collection("vacancies").document(it) }
         docRef?.get()?.addOnSuccessListener { document ->
             if (document != null) {
-                txtJobTitle.text = document.data?.get("title") as String
-                txtJobRecruiter.text = document.data?.get("recruiter") as String
+                binding.txtJobTitle.text = document.data?.get("title") as String
+                binding.txtJobRecruiter.text = document.data?.get("recruiter") as String
                 val address = document.data!!["address"] as String + ", " +
                         document.data!!["state"] as String + ", " +
                         document.data!!["country"] as String
-                txtJobAddress.text = address
+                binding.txtJobAddress.text = address
                 val time =
                     document.data!!["timeFrom"] as String + " ~ " + document.data!!["timeUntil"] as String
-                txtJobSalary.text = "$" + document.data?.get("salary") as String
-                txtJobTime.text = time
-                txtJobCategory.text = document.data?.get("category") as String
-                txtJobDescription.text = document.data?.get("description") as String
-                txtJobSkills.text = document.data?.get("skills") as String
-                txtJobPhone.text = document.data?.get("phone") as String
-                txtJobEmail.text = document.data?.get("email") as String
-                txtJobEducation.text = document.data?.get("education") as String
+                binding.txtJobSalary.text = "$" + document.data?.get("salary") as String
+                binding.txtJobTime.text = time
+                binding.txtJobCategory.text = document.data?.get("category") as String
+                binding.txtJobDescription.text = document.data?.get("description") as String
+                binding.txtJobSkills.text = document.data?.get("skills") as String
+                binding.txtJobPhone.text = document.data?.get("phone") as String
+                binding.txtJobEmail.text = document.data?.get("email") as String
+                binding.txtJobEducation.text = document.data?.get("education") as String
                 applicants = document.data?.get("applicants") as String
                 rec_token = document.data?.get("rec_token") as String
-                pbJobView.visibility = View.GONE
-                lyJobView.visibility = View.VISIBLE
+                binding.pbJobView.visibility = View.GONE
+                binding.lyJobView.visibility = View.VISIBLE
             }
         }
 
-        btnCallJobView.setOnClickListener {
+        binding.btnCallJobView.setOnClickListener {
             val dialIntent = Intent(Intent.ACTION_DIAL)
-            dialIntent.data = Uri.parse("tel:" + txtJobPhone.text)
+            dialIntent.data = Uri.parse("tel:" + binding.txtJobPhone.text)
             startActivity(dialIntent)
         }
 
-        btnEmailJobView.setOnClickListener {
+        binding.btnEmailJobView.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
             intent.data = Uri.parse("mailto:")
             intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_EMAIL, txtJobEmail.text)
+            intent.putExtra(Intent.EXTRA_EMAIL, binding.txtJobEmail.text)
             intent.putExtra(Intent.EXTRA_SUBJECT, "Job Application")
             intent.putExtra(
                 Intent.EXTRA_TEXT,
@@ -74,7 +82,7 @@ class JobViewActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(intent, "Choose Email Client"))
         }
 
-        btnApplyJob.setOnClickListener {
+        binding.btnApplyJob.setOnClickListener {
             val dialogView: View = View.inflate(this, R.layout.activity_apply, null)
             val dlg = AlertDialog.Builder(this)
 
@@ -83,31 +91,43 @@ class JobViewActivity : AppCompatActivity() {
                     it1.uid
                 )
             }
+            val editName = dialogView.findViewById<TextInputEditText>(R.id.editName)
+            val radio_button_1 = dialogView.findViewById<RadioButton>(R.id.radio_button_1)
+            val radio_button_2 = dialogView.findViewById<RadioButton>(R.id.radio_button_2)
+            val editEducation = dialogView.findViewById<TextInputEditText>(R.id.editEducation)
+            val editSkills = dialogView.findViewById<TextInputEditText>(R.id.editSkills)
+            val editEmail = dialogView.findViewById<TextInputEditText>(R.id.editEmail)
+            val editPhone = dialogView.findViewById<TextInputEditText>(R.id.editPhone)
+            val chkExperience = dialogView.findViewById<SwitchMaterial>(R.id.chkExperience)
+            val lyExperience = dialogView.findViewById<LinearLayout>(R.id.lyExperience)
+            val txtYears = dialogView.findViewById<TextView>(R.id.txtYears)
+            val slYears = dialogView.findViewById<Slider>(R.id.slYears)
+
             docRef2?.get()?.addOnSuccessListener {
-                dialogView.editName.setText(it.data?.get("name") as String)
+                editName.setText(it.data?.get("name") as String)
                 appGender = it.data?.get("gender") as String
                 if (appGender == "Male")
-                    dialogView.radio_button_1.isChecked = true
+                    radio_button_1.isChecked = true
                 else
-                    dialogView.radio_button_2.isChecked = true
-                dialogView.editEducation.setText(it.data?.get("education") as String)
-                dialogView.editSkills.setText(it.data?.get("skills") as String)
-                dialogView.editEmail.setText(it.data?.get("email") as String)
-                dialogView.editPhone.setText(it.data?.get("phone") as String)
+                    radio_button_2.isChecked = true
+                editEducation.setText(it.data?.get("education") as String)
+                editSkills.setText(it.data?.get("skills") as String)
+                editEmail.setText(it.data?.get("email") as String)
+                editPhone.setText(it.data?.get("phone") as String)
             }
-            dialogView.chkExperience.setOnCheckedChangeListener { buttonView, isChecked ->
+            chkExperience.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
-                    dialogView.lyExperience.visibility = View.VISIBLE
-                    exp_years = dialogView.txtYears.text.toString()
+                    lyExperience.visibility = View.VISIBLE
+                    exp_years = txtYears.text.toString()
                 } else {
-                    dialogView.lyExperience.visibility = View.GONE
+                    lyExperience.visibility = View.GONE
                     exp_years = "None"
                 }
             }
 
-            dialogView.slYears.addOnChangeListener { _, _, _ ->
-                dialogView.txtYears.text = dialogView.slYears.value.toInt().toString() + " years"
-                exp_years = dialogView.txtYears.text.toString()
+            slYears.addOnChangeListener { _, _, _ ->
+                txtYears.text = slYears.value.toInt().toString() + " years"
+                exp_years = txtYears.text.toString()
             }
 
             dlg.setTitle("Application")
@@ -131,11 +151,11 @@ class JobViewActivity : AppCompatActivity() {
                                                 hashMapOf(
                                                     "job_id" to jobID,
                                                     "recruiter" to rec_token,
-                                                    "rec_name" to txtJobRecruiter.text.toString(),
+                                                    "rec_name" to binding.txtJobRecruiter.text.toString(),
                                                     "applicant_token" to it1.uid,
-                                                    "applicant_name" to dialogView.editName.text.toString(),
+                                                    "applicant_name" to editName.text.toString(),
                                                     "gender" to appGender,
-                                                    "job_title" to txtJobTitle.text.toString(),
+                                                    "job_title" to binding.txtJobTitle.text.toString(),
                                                     "status" to "Waiting...",
                                                     "date" to FieldValue.serverTimestamp()
                                                 )
@@ -143,7 +163,7 @@ class JobViewActivity : AppCompatActivity() {
                                             .addOnSuccessListener {
                                                 applicants = it1.uid + applicants
                                                 Snackbar.make(
-                                                    contextV,
+                                                    binding.contextV,
                                                     "You have successfully applied for this job! Recruiter will contact you soon.",
                                                     Snackbar.LENGTH_LONG
                                                 ).show()
@@ -152,7 +172,7 @@ class JobViewActivity : AppCompatActivity() {
                             }
                         } else {
                             Snackbar.make(
-                                contextV,
+                                binding.contextV,
                                 "You have already send an application for this vacancy.",
                                 Snackbar.LENGTH_LONG
                             ).show()

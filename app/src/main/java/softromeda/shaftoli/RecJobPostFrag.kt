@@ -10,21 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_rec_job_post.view.*
+import softromeda.shaftoli.databinding.FragmentRecJobPostBinding
 
 class RecJobPostFrag : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentRecJobPostBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_rec_job_post, container, false)
+        binding = FragmentRecJobPostBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-        view.recyclerJobPosts.layoutManager = LinearLayoutManager(
+        binding.recyclerJobPosts.layoutManager = LinearLayoutManager(
             context,
             RecyclerView.VERTICAL, false
         )
@@ -54,7 +52,7 @@ class RecJobPostFrag : Fragment() {
 
                 }
                 val precautionsAdapter = JobPostsAdapter(precautionsList)
-                view.recyclerJobPosts.adapter = precautionsAdapter
+                binding.recyclerJobPosts.adapter = precautionsAdapter
             }
             .addOnFailureListener { exception ->
             }

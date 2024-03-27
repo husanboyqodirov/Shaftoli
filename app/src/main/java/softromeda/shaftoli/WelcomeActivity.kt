@@ -16,15 +16,17 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewpager.widget.ViewPager
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.welcome_slider.*
+import softromeda.shaftoli.databinding.WelcomeSliderBinding
 
 class WelcomeActivity : AppCompatActivity() {
+    private lateinit var binding: WelcomeSliderBinding
     private lateinit var myAdapter: MyAdapter
     private lateinit var dotsTv: Array<TextView?>
     private lateinit var layouts: IntArray
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = WelcomeSliderBinding.inflate(layoutInflater)
         val user = Firebase.auth.currentUser
         if (user != null) {
             val sharedPreferences = getSharedPreferences("shaftoli", Activity.MODE_PRIVATE)
@@ -40,28 +42,28 @@ class WelcomeActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
-        setContentView(R.layout.welcome_slider)
+        setContentView(binding.root)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         statusBarTransparent()
-        btnNext.setOnClickListener {
-            val currentPage: Int = viewPager.currentItem + 1
+        binding.btnNext.setOnClickListener {
+            val currentPage: Int = binding.viewPager.currentItem + 1
             if (currentPage < layouts.size) {
-                viewPager.currentItem = currentPage
+                binding.viewPager.currentItem = currentPage
             } else {
                 setAppStartStatus(false)
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
         }
-        btnSkip.setOnClickListener {
+        binding.btnSkip.setOnClickListener {
             setAppStartStatus(false)
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
         layouts = intArrayOf(R.layout.slide_1, R.layout.slide_2, R.layout.slide_3, R.layout.slide_4)
         myAdapter = MyAdapter(layouts, applicationContext)
-        viewPager.adapter = myAdapter
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        binding.viewPager.adapter = myAdapter
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
@@ -72,11 +74,11 @@ class WelcomeActivity : AppCompatActivity() {
 
             override fun onPageSelected(position: Int) {
                 if (position == layouts.size - 1) {
-                    btnNext.text = "Start"
-                    btnSkip.visibility = View.GONE
+                    binding.btnNext.text = "Start"
+                    binding.btnSkip.visibility = View.GONE
                 } else {
-                    btnNext.text = "Next"
-                    btnSkip.visibility = View.VISIBLE
+                    binding.btnNext.text = "Next"
+                    binding.btnSkip.visibility = View.VISIBLE
                 }
                 setDots(position)
             }
@@ -112,14 +114,14 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun setDots(page: Int) {
-        dotsLayout.removeAllViews()
+        binding.dotsLayout.removeAllViews()
         dotsTv = arrayOfNulls(layouts.size)
         for (i in dotsTv.indices) {
             dotsTv[i] = TextView(this)
             dotsTv[i]!!.text = Html.fromHtml("&#8226;")
             dotsTv[i]!!.textSize = 50f
             dotsTv[i]!!.setTextColor(Color.parseColor("#a9b4bb"))
-            dotsLayout.addView(dotsTv[i])
+            binding.dotsLayout.addView(dotsTv[i])
         }
         if (dotsTv.isNotEmpty()) {
             dotsTv[page]!!.setTextColor(Color.parseColor("#3366ff"))

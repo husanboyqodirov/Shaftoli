@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import kotlinx.android.synthetic.main.activity_category.*
+import softromeda.shaftoli.databinding.ActivityCategoryBinding
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -20,10 +20,13 @@ class CategoryActivity : AppCompatActivity() {
     val list = mutableListOf<String>()
     var checked = ""
 
+    private lateinit var binding: ActivityCategoryBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityCategoryBinding.inflate(layoutInflater)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        setContentView(R.layout.activity_category)
+        setContentView(binding.root)
 
         val categories: MutableList<String> = ArrayList()
 
@@ -42,9 +45,9 @@ class CategoryActivity : AppCompatActivity() {
         }
 
         val adapter = ArrayAdapter(this, R.layout.list_item, categories)
-        (txtCategory.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        (binding.txtCategory.editText as? AutoCompleteTextView)?.setAdapter(adapter)
 
-        txtChosenCategory.onItemClickListener =
+        binding.txtChosenCategory.onItemClickListener =
             OnItemClickListener { parent, view, position, rowId ->
                 try {
                     var inputStream: InputStream =
@@ -69,18 +72,18 @@ class CategoryActivity : AppCompatActivity() {
                     var line: String?
                     val br = BufferedReader(inputStreamReader)
                     line = br.readLine()
-                    chipGroup.removeAllViews()
+                    binding.chipGroup.removeAllViews()
                     while (line != null) {
-                        chipGroup.addChip(this, line!!)
+                        binding.chipGroup.addChip(this, line!!)
                         line = br.readLine()
                     }
                     br.close()
-                    catGIF.visibility = View.GONE
-                    lyChipGroup.visibility = View.VISIBLE
+                    binding.catGIF.visibility = View.GONE
+                    binding.lyChipGroup.visibility = View.VISIBLE
                 } catch (e: Exception) {
                 }
             }
-        btnCatDone.setOnClickListener {
+        binding.btnCatDone.setOnClickListener {
             checked = ""
             for (i in 0 until list.size) {
                 checked += if (i < list.size - 1)
@@ -93,7 +96,7 @@ class CategoryActivity : AppCompatActivity() {
                 Context.MODE_PRIVATE
             ).edit()
             userType.putString("chosenCats", checked)
-            userType.putString("jobField", txtChosenCategory.text.toString())
+            userType.putString("jobField", binding.txtChosenCategory.text.toString())
             userType.apply()
             finish()
             Toast.makeText(this, "Category's chosen.", Toast.LENGTH_SHORT).show()

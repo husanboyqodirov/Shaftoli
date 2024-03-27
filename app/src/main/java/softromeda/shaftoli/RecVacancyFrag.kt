@@ -21,20 +21,17 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_rec_vacancy.*
-import kotlinx.android.synthetic.main.fragment_rec_vacancy.view.*
+import softromeda.shaftoli.databinding.FragmentRecVacancyBinding
 
 class RecVacancyFrag : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentRecVacancyBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_rec_vacancy, container, false)
+        binding = FragmentRecVacancyBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         val countries = listOf(
             "Uzbekistan",
@@ -45,7 +42,7 @@ class RecVacancyFrag : Fragment() {
             "Afghanistan"
         )
         var adapter = ArrayAdapter(requireContext(), R.layout.list_item, countries)
-        (view.txtCountry.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        (binding.txtCountry.editText as? AutoCompleteTextView)?.setAdapter(adapter)
 
         val levels = listOf(
             "Associate",
@@ -55,15 +52,15 @@ class RecVacancyFrag : Fragment() {
             "Not needed"
         )
         adapter = ArrayAdapter(requireContext(), R.layout.list_item, levels)
-        (view.txtLevel.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        (binding.txtLevel.editText as? AutoCompleteTextView)?.setAdapter(adapter)
 
-        view.btnChooseCategory.setOnClickListener {
+        binding.btnChooseCategory.setOnClickListener {
             startActivity(Intent(context, CategoryActivity::class.java))
         }
 
         getProfileInfo()
 
-        view.txtTimeFrom.setOnClickListener {
+        binding.txtTimeFrom.setOnClickListener {
             val picker =
                 MaterialTimePicker.Builder()
                     .setTimeFormat(TimeFormat.CLOCK_12H)
@@ -74,11 +71,11 @@ class RecVacancyFrag : Fragment() {
 
             picker.addOnPositiveButtonClickListener {
                 val chosenTime = picker.hour.toString() + ":" + picker.minute.toString()
-                view.txtTimeFrom.text = chosenTime
+                binding.txtTimeFrom.text = chosenTime
             }
         }
 
-        view.txtTimeUntil.setOnClickListener {
+        binding.txtTimeUntil.setOnClickListener {
             val picker =
                 MaterialTimePicker.Builder()
                     .setTimeFormat(TimeFormat.CLOCK_12H)
@@ -89,13 +86,13 @@ class RecVacancyFrag : Fragment() {
 
             picker.addOnPositiveButtonClickListener {
                 val chosenTime = picker.hour.toString() + ":" + picker.minute.toString()
-                view.txtTimeUntil.text = chosenTime
+                binding.txtTimeUntil.text = chosenTime
             }
         }
 
         var txtDeadline = ""
 
-        view.btnDeadline.setOnClickListener {
+        binding.btnDeadline.setOnClickListener {
             val datePicker =
                 MaterialDatePicker.Builder.datePicker()
                     .setTitleText("Select Vacancy Deadline ")
@@ -109,7 +106,7 @@ class RecVacancyFrag : Fragment() {
             }
         }
 
-        view.btnAnnounce.setOnClickListener {
+        binding.btnAnnounce.setOnClickListener {
             it.hideKeyboard()
 
             context?.let { it1 ->
@@ -122,19 +119,19 @@ class RecVacancyFrag : Fragment() {
                     .setNegativeButton("No Cancel") { _, _ ->
                     }
                     .setPositiveButton("Yes Post") { _, _ ->
-                        val txtVacancyName = view.txtVacancyName.text.toString()
-                        val txtRecruiter = view.txtRecruiter.text.toString()
-                        val txtAddress = view.txtAddress.text.toString()
-                        val txtState = view.txtState.text.toString()
-                        val txtCountry = view.txtCountryText.text.toString()
-                        val txtSalary = view.txtSalary.text.toString()
-                        val txtEducation = view.txtDegreeLevel.text.toString()
-                        val txtTimeFrom = view.txtTimeFrom.text.toString()
-                        val txtTimeUntil = view.txtTimeUntil.text.toString()
-                        val txtPhone = view.txtPhone.text.toString()
-                        val txtEmail = view.txtEmail.text.toString()
-                        val txtDescription = view.txtDescription.text.toString()
-                        val txtSkill = view.txtSkills.text.toString()
+                        val txtVacancyName = binding.txtVacancyName.text.toString()
+                        val txtRecruiter = binding.txtRecruiter.text.toString()
+                        val txtAddress = binding.txtAddress.text.toString()
+                        val txtState = binding.txtState.text.toString()
+                        val txtCountry = binding.txtCountryText.text.toString()
+                        val txtSalary = binding.txtSalary.text.toString()
+                        val txtEducation = binding.txtDegreeLevel.text.toString()
+                        val txtTimeFrom = binding.txtTimeFrom.text.toString()
+                        val txtTimeUntil = binding.txtTimeUntil.text.toString()
+                        val txtPhone = binding.txtPhone.text.toString()
+                        val txtEmail = binding.txtEmail.text.toString()
+                        val txtDescription = binding.txtDescription.text.toString()
+                        val txtSkill = binding.txtSkills.text.toString()
 
                         val sharedPreferences =
                             context?.getSharedPreferences("shaftoli", Activity.MODE_PRIVATE)
@@ -177,7 +174,7 @@ class RecVacancyFrag : Fragment() {
                                         userType?.putString("chosenCats", "")
                                         userType?.apply()
                                         Snackbar.make(
-                                            view.snackViewPost,
+                                            binding.snackViewPost,
                                             "Vacancy is posted successfully!",
                                             Snackbar.LENGTH_LONG
                                         )
@@ -212,9 +209,9 @@ class RecVacancyFrag : Fragment() {
             )
         }
         docRef?.get()?.addOnSuccessListener { document ->
-            txtRecruiter.setText(document.data?.get("name") as String)
-            txtEmail.setText(document.data?.get("email") as String)
-            txtPhone.setText(document.data?.get("phone") as String)
+            binding.txtRecruiter.setText(document.data?.get("name") as String)
+            binding.txtEmail.setText(document.data?.get("email") as String)
+            binding.txtPhone.setText(document.data?.get("phone") as String)
         }
     }
 

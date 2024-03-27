@@ -9,20 +9,18 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_rec_notifications.view.*
+import softromeda.shaftoli.databinding.FragmentHunterNotificationsBinding
 
 class HunterNotificationsFrag : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentHunterNotificationsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_hunter_notifications, container, false)
+        binding = FragmentHunterNotificationsBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         val list = mutableListOf<HunterApplicationsModel>()
 
@@ -32,7 +30,7 @@ class HunterNotificationsFrag : Fragment() {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     if (document.data["applicant_token"] != Firebase.auth.currentUser?.uid)
-                        view.emptyLayout.visibility = View.GONE
+                        binding.emptyLayout.visibility = View.GONE
                     val timestamp = document.data["date"] as Timestamp
                     val dateStamp = timestamp.toDate()
                     val dateSTR = dateStamp.toString()
@@ -46,7 +44,7 @@ class HunterNotificationsFrag : Fragment() {
                             document.data["status"] as String,
                         )
                     )
-                    view.recListView.adapter = context?.let {
+                    binding.recListView.adapter = context?.let {
                         HunterApplicationsAdapter(
                             it,
                             R.layout.hunter_notify_row,
@@ -56,7 +54,7 @@ class HunterNotificationsFrag : Fragment() {
 
                 }
                 if (list.isNullOrEmpty())
-                    view.emptyLayout.visibility = View.VISIBLE
+                    binding.emptyLayout.visibility = View.VISIBLE
             }
 
         return view

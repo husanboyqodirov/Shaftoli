@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="® Softromeda, Inc. 2022"
+        android:text="® Husanboy. 2022"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp" />

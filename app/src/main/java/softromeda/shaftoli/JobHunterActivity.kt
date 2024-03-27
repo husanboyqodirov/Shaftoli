@@ -3,15 +3,17 @@ package softromeda.shaftoli
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_bottom_nav.*
+import softromeda.shaftoli.databinding.ActivityBottomNavBinding
 
 class JobHunterActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityBottomNavBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bottom_nav)
+        binding = ActivityBottomNavBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        bottom_nav_view.inflateMenu(R.menu.nav_menu_hunter)
+        binding.bottomNavView.inflateMenu(R.menu.nav_menu_hunter)
 
         val hunterJobsFrag = HunterJobsFrag()
         val hunterSearchFrag = HunterSearchFrag()
@@ -20,7 +22,7 @@ class JobHunterActivity : AppCompatActivity() {
         val hunterProfileFrag = HunterProfileFrag()
 
 
-        bottom_nav_view.setOnNavigationItemSelectedListener {
+        binding.bottomNavView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navHunterJobs -> setCurrentFragment(hunterJobsFrag)
                 R.id.navHunterSearch -> setCurrentFragment(hunterSearchFrag)

@@ -15,25 +15,21 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_category.txtChosenCategory
-import kotlinx.android.synthetic.main.fragment_hunter_search.*
-import kotlinx.android.synthetic.main.fragment_hunter_search.view.*
+import softromeda.shaftoli.databinding.FragmentHunterSearchBinding
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 
 class HunterSearchFrag : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentHunterSearchBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_hunter_search, container, false)
+        binding = FragmentHunterSearchBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         val categories: MutableList<String> = ArrayList()
 
@@ -52,7 +48,7 @@ class HunterSearchFrag : Fragment() {
         }
 
         var adapter = context?.let { ArrayAdapter(it, R.layout.list_item, categories) }
-        (view.txtCategory.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        (binding.txtCategory.editText as? AutoCompleteTextView)?.setAdapter(adapter)
 
         val levels = listOf(
             "Associate",
@@ -62,15 +58,15 @@ class HunterSearchFrag : Fragment() {
             "Not needed"
         )
         adapter = ArrayAdapter(requireContext(), R.layout.list_item, levels)
-        (view.txtEdu.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        (binding.txtEdu.editText as? AutoCompleteTextView)?.setAdapter(adapter)
 
-        view.btnSearch.setOnClickListener {
+        binding.btnSearch.setOnClickListener {
             getVacancies(
-                txtChosenCategory.text.toString(),
-                txtChosenEdu.text.toString(),
-                txtSalaryMax.text.toString(),
-                txtSalaryMin.text.toString(),
-                txtSearchQuery.text.toString()
+                binding.txtChosenCategory.text.toString(),
+                binding.txtChosenEdu.text.toString(),
+                binding.txtSalaryMax.text.toString(),
+                binding.txtSalaryMin.text.toString(),
+                binding.txtSearchQuery.text.toString()
             )
 
         }
@@ -85,7 +81,7 @@ class HunterSearchFrag : Fragment() {
         txtSalaryMin: String,
         txtQuery: String
     ) {
-        pbJobSearch.visibility = View.VISIBLE
+        binding.pbJobSearch.visibility = View.VISIBLE
         var favs = ""
         val jobIDs = mutableListOf<String>()
         val db = Firebase.firestore
@@ -100,7 +96,7 @@ class HunterSearchFrag : Fragment() {
                     }
                 }
                 val precautionsAdapter = JobPostsAdapter(precautionsList)
-                hunterJobPosts.adapter = precautionsAdapter
+                binding.hunterJobPosts.adapter = precautionsAdapter
 
                 val adapter = JobPostsAdapter(precautionsList)
                 adapter.itemClick = object : JobPostsAdapter.ItemClick {
@@ -150,9 +146,9 @@ class HunterSearchFrag : Fragment() {
                         }
                     }
                 }
-                hunterJobPosts.adapter = adapter
-                pbJobSearch.visibility = View.GONE
-                hunterJobPosts.visibility = View.VISIBLE
+                binding.hunterJobPosts.adapter = adapter
+                binding.pbJobSearch.visibility = View.GONE
+                binding.hunterJobPosts.visibility = View.VISIBLE
             }
     }
 }

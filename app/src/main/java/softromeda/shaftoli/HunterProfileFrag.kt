@@ -8,6 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.EditText
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -16,27 +19,23 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_hunter_profile.*
-import kotlinx.android.synthetic.main.fragment_hunter_profile.view.*
-import kotlinx.android.synthetic.main.hunter_profile_edit.view.*
+import softromeda.shaftoli.databinding.FragmentHunterProfileBinding
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 
 class HunterProfileFrag : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentHunterProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_hunter_profile, container, false)
+        binding  = FragmentHunterProfileBinding.inflate(inflater, container, false)
+        val view = binding.root
         val db = Firebase.firestore
 
-        view.txtLogOut.setOnClickListener {
+        binding.txtLogOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val userType = context?.getSharedPreferences("shaftoli", Context.MODE_PRIVATE)?.edit()
             userType?.putString("userType", "")
@@ -48,9 +47,20 @@ class HunterProfileFrag : Fragment() {
         getProfileInfo()
 
 
-        view.btnProfileEdit.setOnClickListener {
+        binding.btnProfileEdit.setOnClickListener {
             val dialogView: View = View.inflate(context, R.layout.hunter_profile_edit, null)
             val dlg = AlertDialog.Builder(context)
+            val txtEditname = dialogView.findViewById<EditText>(R.id.txtEditName)
+            val btnMale = dialogView.findViewById<RadioButton>(R.id.btnMale)
+            val btnFemale = dialogView.findViewById<RadioButton>(R.id.btnFemale)
+            val txtEditAddress = dialogView.findViewById<EditText>(R.id.txtEditAddress)
+            val txtEditEducation = dialogView.findViewById<EditText>(R.id.txtEditEducation)
+            val txtEditField = dialogView.findViewById<AutoCompleteTextView>(R.id.txtEditField)
+            val txtEditSkills = dialogView.findViewById<EditText>(R.id.txtEditSkills)
+            val txtEditEmail = dialogView.findViewById<EditText>(R.id.txtEditEmail)
+            val txtEditPhone = dialogView.findViewById<EditText>(R.id.txtEditPhone)
+            val txtEditWorkHisotry = dialogView.findViewById<EditText>(R.id.txtEditWorkHisotry)
+            val txtEditSelfIntro = dialogView.findViewById<EditText>(R.id.txtEditSelfIntro)
 
             val docRef = Firebase.auth.currentUser?.let { it1 ->
                 db.collection("job_hunters").document(
@@ -58,19 +68,20 @@ class HunterProfileFrag : Fragment() {
                 )
             }
             docRef?.get()?.addOnSuccessListener { document ->
-                dialogView.txtEditName.setText(document.data?.get("name") as String)
+
+                txtEditname.setText(document.data?.get("name") as String)
                 if (document.data?.get("gender") as String == "Male")
-                    dialogView.btnMale.isChecked = true
+                    btnMale.isChecked = true
                 else
-                    dialogView.btnFemale.isChecked = true
-                dialogView.txtEditAddress.setText(document.data?.get("address") as String)
-                dialogView.txtEditEducation.setText(document.data?.get("education") as String)
-                dialogView.txtEditField.setText(document.data?.get("field") as String)
-                dialogView.txtEditSkills.setText(document.data?.get("skills") as String)
-                dialogView.txtEditEmail.setText(document.data?.get("email") as String)
-                dialogView.txtEditPhone.setText(document.data?.get("phone") as String)
-                dialogView.txtEditWorkHisotry.setText(document.data?.get("work_history") as String)
-                dialogView.txtEditSelfIntro.setText(document.data?.get("self_intro") as String)
+                    btnFemale.isChecked = true
+                txtEditAddress.setText(document.data?.get("address") as String)
+                txtEditEducation.setText(document.data?.get("education") as String)
+                txtEditField.setText(document.data?.get("field") as String)
+                txtEditSkills.setText(document.data?.get("skills") as String)
+                txtEditEmail.setText(document.data?.get("email") as String)
+                txtEditPhone.setText(document.data?.get("phone") as String)
+                txtEditWorkHisotry.setText(document.data?.get("work_history") as String)
+                txtEditSelfIntro.setText(document.data?.get("self_intro") as String)
                 val categories: MutableList<String> = ArrayList()
 
                 try {
@@ -95,7 +106,7 @@ class HunterProfileFrag : Fragment() {
                         categories
                     )
                 }
-                dialogView.txtEditField.setAdapter(adapter)
+                txtEditField.setAdapter(adapter)
 
             }
 
@@ -106,9 +117,9 @@ class HunterProfileFrag : Fragment() {
                 run {
                     val myField = context?.getSharedPreferences("shaftoli", Context.MODE_PRIVATE)
                         ?.edit()
-                    myField?.putString("myField", dialogView.txtEditField.text.toString())
+                    myField?.putString("myField", txtEditField.text.toString())
                     myField?.apply()
-                    val txtGender = if (dialogView.btnMale.isChecked)
+                    val txtGender = if (btnMale.isChecked)
                         "Male"
                     else
                         "Female"
@@ -116,15 +127,15 @@ class HunterProfileFrag : Fragment() {
                         db.collection("job_hunters").document(it1.uid)
                             .set(
                                 hashMapOf(
-                                    "name" to dialogView.txtEditName.text.toString(),
+                                    "name" to txtEditname.text.toString(),
                                     "gender" to txtGender,
-                                    "field" to dialogView.txtEditField.text.toString(),
-                                    "education" to dialogView.txtEditEducation.text.toString(),
-                                    "skills" to dialogView.txtEditSkills.text.toString(),
-                                    "email" to dialogView.txtEditEmail.text.toString(),
-                                    "phone" to dialogView.txtEditPhone.text.toString(),
-                                    "work_history" to dialogView.txtEditWorkHisotry.text.toString(),
-                                    "self_intro" to dialogView.txtEditSelfIntro.text.toString()
+                                    "field" to txtEditField.text.toString(),
+                                    "education" to txtEditEducation.text.toString(),
+                                    "skills" to txtEditSkills.text.toString(),
+                                    "email" to txtEditEmail.text.toString(),
+                                    "phone" to txtEditPhone.text.toString(),
+                                    "work_history" to txtEditWorkHisotry.text.toString(),
+                                    "self_intro" to txtEditSelfIntro.text.toString()
                                 ),
                                 SetOptions.merge()
                             )
@@ -142,7 +153,7 @@ class HunterProfileFrag : Fragment() {
             dlg.show()
         }
 
-        view.btnAboutHunter.setOnClickListener {
+        binding.btnAboutHunter.setOnClickListener {
             startActivity(Intent(context, AboutActivity::class.java))
         }
 
@@ -156,30 +167,30 @@ class HunterProfileFrag : Fragment() {
             )
         }
         docRef?.get()?.addOnSuccessListener { document ->
-            txtProName.text = document.data?.get("name") as String
-            txtProGender.text = document.data?.get("gender") as String
+            binding.txtProName.text = document.data?.get("name") as String
+            binding.txtProGender.text = document.data?.get("gender") as String
             if (document.data?.get("gender") as String == "Male")
-                profile_image.setImageDrawable(context?.let {
+                binding.profileImage.setImageDrawable(context?.let {
                     ContextCompat.getDrawable(
                         it,
                         R.drawable.profile_male
                     )
                 })
             else
-                profile_image.setImageDrawable(context?.let {
+                binding.profileImage.setImageDrawable(context?.let {
                     ContextCompat.getDrawable(
                         it,
                         R.drawable.profile_female
                     )
                 })
-            txtProAddress.text = document.data?.get("address") as String
-            txtProEducation.text = document.data?.get("education") as String
-            txtProSkills.text = document.data?.get("skills") as String
-            txtProField.text = document.data?.get("field") as String
-            txtProEmail.text = document.data?.get("email") as String
-            txtProPhone.text = document.data?.get("phone") as String
-            txtProWorkHistory.text = document.data?.get("work_history") as String
-            txtProSelfIntro.text = document.data?.get("self_intro") as String
+            binding.txtProAddress.text = document.data?.get("address") as String
+            binding.txtProEducation.text = document.data?.get("education") as String
+            binding.txtProSkills.text = document.data?.get("skills") as String
+            binding.txtProField.text = document.data?.get("field") as String
+            binding.txtProEmail.text = document.data?.get("email") as String
+            binding.txtProPhone.text = document.data?.get("phone") as String
+            binding.txtProWorkHistory.text = document.data?.get("work_history") as String
+            binding.txtProSelfIntro.text = document.data?.get("self_intro") as String
         }
     }
 }

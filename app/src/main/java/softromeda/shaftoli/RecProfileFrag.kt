@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
@@ -16,35 +18,25 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_rec_profile.*
-import kotlinx.android.synthetic.main.fragment_rec_profile.view.*
-import kotlinx.android.synthetic.main.hunter_profile_edit.view.txtEditAddress
-import kotlinx.android.synthetic.main.hunter_profile_edit.view.txtEditEmail
-import kotlinx.android.synthetic.main.hunter_profile_edit.view.txtEditField
-import kotlinx.android.synthetic.main.hunter_profile_edit.view.txtEditName
-import kotlinx.android.synthetic.main.hunter_profile_edit.view.txtEditPhone
-import kotlinx.android.synthetic.main.hunter_profile_edit.view.txtEditSelfIntro
-import kotlinx.android.synthetic.main.rec_profile_edit.view.*
+import softromeda.shaftoli.databinding.FragmentRecProfileBinding
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 
 class RecProfileFrag : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentRecProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_rec_profile, container, false)
+        binding = FragmentRecProfileBinding.inflate(inflater, container, false)
+        val view = binding.root
         val db = Firebase.firestore
 
-        view.txtProWebsite.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        binding.txtProWebsite.paintFlags = Paint.UNDERLINE_TEXT_FLAG
 
-        view.txtLogOut.setOnClickListener {
+        binding.txtLogOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val userType = context?.getSharedPreferences("shaftoli", Context.MODE_PRIVATE)?.edit()
             userType?.putString("userType", "")
@@ -56,7 +48,7 @@ class RecProfileFrag : Fragment() {
         getProfileInfo()
 
 
-        view.btnProfileEdit.setOnClickListener {
+        binding.btnProfileEdit.setOnClickListener {
             val dialogView: View = View.inflate(context, R.layout.rec_profile_edit, null)
             val dlg = AlertDialog.Builder(context)
 
@@ -65,15 +57,25 @@ class RecProfileFrag : Fragment() {
                     it1.uid
                 )
             }
+
+            val txtEditName = dialogView.findViewById<EditText>(R.id.txtEditName)
+            val txtEditAddress = dialogView.findViewById<EditText>(R.id.txtEditAddress)
+            val txtEditField = dialogView.findViewById<AutoCompleteTextView>(R.id.txtEditField)
+            val txtEditEmail = dialogView.findViewById<EditText>(R.id.txtEditEmail)
+            val txtEditPhone = dialogView.findViewById<EditText>(R.id.txtEditPhone)
+            val txtEditWebsite = dialogView.findViewById<EditText>(R.id.txtEditWebsite)
+            val txtEditEmployees = dialogView.findViewById<EditText>(R.id.txtEditEmployees)
+            val txtEditSelfIntro = dialogView.findViewById<EditText>(R.id.txtEditSelfIntro)
+
             docRef?.get()?.addOnSuccessListener { document ->
-                dialogView.txtEditName.setText(document.data?.get("name") as String)
-                dialogView.txtEditAddress.setText(document.data?.get("address") as String)
-                dialogView.txtEditField.setText(document.data?.get("field") as String)
-                dialogView.txtEditEmail.setText(document.data?.get("email") as String)
-                dialogView.txtEditPhone.setText(document.data?.get("phone") as String)
-                dialogView.txtEditWebsite.setText(document.data?.get("website") as String)
-                dialogView.txtEditEmployees.setText(document.data?.get("employees") as String)
-                dialogView.txtEditSelfIntro.setText(document.data?.get("self_intro") as String)
+                txtEditName.setText(document.data?.get("name") as String)
+                txtEditAddress.setText(document.data?.get("address") as String)
+                txtEditField.setText(document.data?.get("field") as String)
+                txtEditEmail.setText(document.data?.get("email") as String)
+                txtEditPhone.setText(document.data?.get("phone") as String)
+                txtEditWebsite.setText(document.data?.get("website") as String)
+                txtEditEmployees.setText(document.data?.get("employees") as String)
+                txtEditSelfIntro.setText(document.data?.get("self_intro") as String)
                 val categories: MutableList<String> = ArrayList()
 
                 try {
@@ -98,7 +100,7 @@ class RecProfileFrag : Fragment() {
                         categories
                     )
                 }
-                dialogView.txtEditField.setAdapter(adapter)
+                txtEditField.setAdapter(adapter)
 
             }
 
@@ -111,14 +113,14 @@ class RecProfileFrag : Fragment() {
                         db.collection("recruiters").document(it1.uid)
                             .set(
                                 hashMapOf(
-                                    "name" to dialogView.txtEditName.text.toString(),
-                                    "address" to dialogView.txtEditAddress.text.toString(),
-                                    "field" to dialogView.txtEditField.text.toString(),
-                                    "email" to dialogView.txtEditEmail.text.toString(),
-                                    "phone" to dialogView.txtEditPhone.text.toString(),
-                                    "website" to dialogView.txtEditWebsite.text.toString(),
-                                    "employees" to dialogView.txtEditEmployees.text.toString(),
-                                    "self_intro" to dialogView.txtEditSelfIntro.text.toString()
+                                    "name" to txtEditName.text.toString(),
+                                    "address" to txtEditAddress.text.toString(),
+                                    "field" to txtEditField.text.toString(),
+                                    "email" to txtEditEmail.text.toString(),
+                                    "phone" to txtEditPhone.text.toString(),
+                                    "website" to txtEditWebsite.text.toString(),
+                                    "employees" to txtEditEmployees.text.toString(),
+                                    "self_intro" to txtEditSelfIntro.text.toString()
                                 ),
                                 SetOptions.merge()
                             )
@@ -136,7 +138,7 @@ class RecProfileFrag : Fragment() {
             dlg.show()
         }
 
-        view.btnAboutHunter.setOnClickListener {
+        binding.btnAboutHunter.setOnClickListener {
             startActivity(Intent(context, AboutActivity::class.java))
         }
 
@@ -150,14 +152,14 @@ class RecProfileFrag : Fragment() {
             )
         }
         docRef?.get()?.addOnSuccessListener { document ->
-            txtProName.text = document.data?.get("name") as String
-            txtProAddress.text = document.data?.get("address") as String
-            txtProField.text = document.data?.get("field") as String
-            txtProEmail.text = document.data?.get("email") as String
-            txtProPhone.text = document.data?.get("phone") as String
-            txtProWebsite.text = document.data?.get("website") as String
-            txtProEmployees.text = document.data?.get("employees") as String
-            txtProSelfIntro.text = document.data?.get("self_intro") as String
+            binding.txtProName.text = document.data?.get("name") as String
+            binding.txtProAddress.text = document.data?.get("address") as String
+            binding.txtProField.text = document.data?.get("field") as String
+            binding.txtProEmail.text = document.data?.get("email") as String
+            binding.txtProPhone.text = document.data?.get("phone") as String
+            binding.txtProWebsite.text = document.data?.get("website") as String
+            binding.txtProEmployees.text = document.data?.get("employees") as String
+            binding.txtProSelfIntro.text = document.data?.get("self_intro") as String
         }
     }
 }

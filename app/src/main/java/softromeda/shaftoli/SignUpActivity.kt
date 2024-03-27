@@ -14,38 +14,40 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.signup.*
+import softromeda.shaftoli.databinding.SignupBinding
 
 class SignUpActivity : AppCompatActivity() {
+    private lateinit var binding: SignupBinding
     var mAuth: FirebaseAuth? = null
     var collectionName: String = ""
     var userData = hashMapOf("" to "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = SignupBinding.inflate(layoutInflater)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        setContentView(R.layout.signup)
+        setContentView(binding.root)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         mAuth = FirebaseAuth.getInstance()
-        btnRegister.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             it.hideKeyboard()
             createUser()
         }
 
-        tvLoginHere.setOnClickListener {
+        binding.tvLoginHere.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             finish()
         }
 
-        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+        binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.radio_button_1 -> {
-                    rdGender.visibility = View.VISIBLE
+                    binding.rdGender.visibility = View.VISIBLE
                 }
                 R.id.radio_button_2 -> {
-                    rdGender.visibility = View.GONE
+                    binding.rdGender.visibility = View.GONE
                 }
             }
         }
@@ -59,33 +61,33 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun createUser() {
-        progressBar.visibility = View.VISIBLE
-        val name = etRegName.text.toString()
-        val email = etRegEmail.text.toString()
-        val password = etRegPass.text.toString()
-        val confPassword = etRegConfPass.text.toString()
+        binding.progressBar.visibility = View.VISIBLE
+        val name = binding.etRegName.text.toString()
+        val email = binding.etRegEmail.text.toString()
+        val password = binding.etRegPass.text.toString()
+        val confPassword = binding.etRegConfPass.text.toString()
         if (TextUtils.isEmpty(name)) {
-            progressBar.visibility = View.GONE
-            etRegName.error = "Full name cannot be empty."
-            etRegName.requestFocus()
-        } else if (radio_button_1.isChecked) {
-            if (!btnMale.isChecked && !btnFemale.isChecked) {
-                progressBar.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
+            binding.etRegName.error = "Full name cannot be empty."
+            binding.etRegName.requestFocus()
+        } else if (binding.radioButton1.isChecked) {
+            if (!binding.btnMale.isChecked && !binding.btnFemale.isChecked) {
+                binding.progressBar.visibility = View.GONE
                 Toast.makeText(this, "Gender must be selected.", Toast.LENGTH_SHORT).show()
-                rdGender.requestFocus()
+                binding.rdGender.requestFocus()
             }
         } else if (TextUtils.isEmpty(email)) {
-            progressBar.visibility = View.GONE
-            etRegEmail.error = "Email cannot be empty."
-            etRegEmail.requestFocus()
+            binding.progressBar.visibility = View.GONE
+            binding.etRegEmail.error = "Email cannot be empty."
+            binding.etRegEmail.requestFocus()
         } else if (TextUtils.isEmpty(password)) {
-            progressBar.visibility = View.GONE
-            etRegPass.error = "Password cannot be empty."
-            etRegPass.requestFocus()
+            binding.progressBar.visibility = View.GONE
+            binding.etRegPass.error = "Password cannot be empty."
+            binding.etRegPass.requestFocus()
         } else if (password != confPassword) {
-            progressBar.visibility = View.GONE
-            etRegConfPass.error = "Passwords did not match."
-            etRegConfPass.requestFocus()
+            binding.progressBar.visibility = View.GONE
+            binding.etRegConfPass.error = "Passwords did not match."
+            binding.etRegConfPass.requestFocus()
         } else {
 
             mAuth!!.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
@@ -103,12 +105,12 @@ class SignUpActivity : AppCompatActivity() {
                                             val db = Firebase.firestore
                                             val token = user.uid
                                             var txtGender = ""
-                                            txtGender = if (btnMale.isChecked)
+                                            txtGender = if (binding.btnMale.isChecked)
                                                 "Male"
                                             else
                                                 "Female"
 
-                                            if (radio_button_1.isChecked) {
+                                            if (binding.radioButton1.isChecked) {
                                                 collectionName = "job_hunters"
                                                 userData = hashMapOf(
                                                     "name" to name,
@@ -125,7 +127,7 @@ class SignUpActivity : AppCompatActivity() {
                                                     "password" to password,
                                                     "token" to token
                                                 )
-                                            } else if (radio_button_2.isChecked) {
+                                            } else if (binding.radioButton2.isChecked) {
                                                 collectionName = "recruiters"
                                                 userData = hashMapOf(
                                                     "name" to name,
@@ -149,21 +151,21 @@ class SignUpActivity : AppCompatActivity() {
                                                         "You registered successfully! Please confirm your email.",
                                                         Toast.LENGTH_LONG
                                                     ).show()
-                                                    if (radio_button_1.isChecked)
+                                                    if (binding.radioButton1.isChecked)
                                                         startActivity(
                                                             Intent(
                                                                 this,
                                                                 JobHunterActivity::class.java
                                                             )
                                                         )
-                                                    else if (radio_button_2.isChecked)
+                                                    else if (binding.radioButton2.isChecked)
                                                         startActivity(
                                                             Intent(
                                                                 this,
                                                                 RecruiterActivity::class.java
                                                             )
                                                         )
-                                                    progressBar.visibility = View.GONE
+                                                    binding.progressBar.visibility = View.GONE
                                                     val userType = getSharedPreferences(
                                                         "shaftoli",
                                                         Context.MODE_PRIVATE
@@ -173,7 +175,7 @@ class SignUpActivity : AppCompatActivity() {
                                                     finish()
                                                 }
                                                 .addOnFailureListener {
-                                                    progressBar.visibility = View.GONE
+                                                    binding.progressBar.visibility = View.GONE
                                                     Toast.makeText(
                                                         this,
                                                         "Registration Error.",
@@ -189,7 +191,7 @@ class SignUpActivity : AppCompatActivity() {
 
                 } else {
                     Toast.makeText(this, "Registration Error.", Toast.LENGTH_SHORT).show()
-                    progressBar.visibility = View.GONE
+                    binding.progressBar.visibility = View.GONE
                 }
             }
         }
